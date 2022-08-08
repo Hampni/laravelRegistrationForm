@@ -5,9 +5,11 @@
  */
 
 require('./bootstrap');
-require('./main');
+
+
 
 window.Vue = require('vue').default;
+import VueSession from "vue-session";
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,10 +22,9 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('front-page', require('./components/Front.vue').default)
-Vue.component('form-page', require('./components/FormComponent.vue').default)
-Vue.component('members-page', require('./components/MemberComponent.vue').default)
+Vue.use(VueSession);
+Vue.component('form-page', require('./components/v-form.vue').default)
+Vue.component('members-page', require('./components/v-members.vue').default)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,3 +35,8 @@ Vue.component('members-page', require('./components/MemberComponent.vue').defaul
 const app = new Vue({
     el: '#app',
 });
+
+document.querySelector('.agileits-top-third').style.display = 'none';
+$('.iti.iti--allow-dropdown')[0].style.width = '100%'
+$('.iti.iti--allow-dropdown')[0].style.marginBottom = '13px'
+

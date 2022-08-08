@@ -26,6 +26,7 @@
     "dependencies": {
         "imask": "^6.4.2",
         "intl-tel-input": "^17.0.18",
-        "jquery": "^3.6.0"
+        "jquery.session": "^1.0.0",
+        "vue-session": "^1.0.0"
     }
 }

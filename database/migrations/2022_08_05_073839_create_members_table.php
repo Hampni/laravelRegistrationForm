@@ -26,6 +26,7 @@ class CreateMembersTable extends Migration
             $table->string('position');
             $table->string('about_me');
             $table->string('photo');
+            $table->integer('is_shown');
             $table->timestamps();
         });
     }
