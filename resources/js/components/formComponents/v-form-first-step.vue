@@ -18,14 +18,14 @@
                 <!--First name-->
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100" class="label_input"
                        id="first_name_label"
-                       for="first_name">Only upper and lower case: Jhon</label>
+                       for="first_name">Example: Jhon</label>
                 <input class="text email" style="margin-top: 5px;" type="text" id="first_name" name="first_name"
                        placeholder="First name"
                        required="">
 
                 <!--Last name-->
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="last_name_label"
-                       for="last_name">Only upper and lower case: Dorian</label>
+                       for="last_name">Example: Dorian</label>
                 <input class="text email" style="margin-top: 5px;" type="text" id="last_name" name="last_name"
                        placeholder="Last name"
                        required="">
@@ -40,7 +40,7 @@
 
                 <!--Report Subject-->
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="report_subject_label"
-                       for="report_subject">Upper, lower case, digits allowed</label>
+                       for="report_subject">Example: Computer Science</label>
                 <input class="text email" style="margin-top: 5px;" type="text" id="report_subject"
                        name="report_subject"
                        placeholder="Report subject" required="">
@@ -58,7 +58,7 @@
 
                 <!--Phone number-->
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100; margin-bottom: 5px"
-                       id="phone_label" for="phone">Insert your phone number. Example: +380 (xxx)
+                       id="phone_label" for="phone">Example: +380 (xxx)
                     xxx-xxx</label><br>
                 <input class="text email" style="margin-top: 5px; display: block" id="phone" type="text"
                        name="phone"
@@ -66,8 +66,7 @@
                 <br>
                 <!--Email-->
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100 " id="email_label"
-                       for="email">Insert
-                    your email. Example: YourEmail@mail.com</label> <br>
+                       for="email">Example: YourEmail@mail.com</label> <br>
                 <input class="text email" style="margin-top: 5px;" type="email" id="email" name="email"
                        placeholder="Email" required="">
                 <div class="wthree-text">
@@ -183,7 +182,7 @@ export default {
                 Object.values(form)[i].style.border = ''
             }
 
-            axios.post('/api/save', data)
+            axios.post('/api/saveFirstStep', data)
                 .then((msg) => {
                     console.log(msg)
                     this.showSecondStep();
@@ -204,7 +203,7 @@ export default {
                         } else {
                             this.errors = errorsCurrent
                             intersection.forEach((e) => {
-                                document.getElementById(e.id).style.border = '1px solid lightcoral'
+                                document.getElementById(e.id).style.border = '1px solid red'
                             })
                             document.getElementById('agileits-top-first').scrollIntoView();
                         }

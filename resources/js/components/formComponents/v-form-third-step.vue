@@ -35,6 +35,7 @@
 </template>
 
 <script>
+
 export default {
     name: "v-form-third-step",
     components: {
@@ -50,12 +51,13 @@ export default {
     },
     methods: {
         loadMembersAmount: function () {
-            axios.get('/api/members/countMembers')
+            axios.get('/api/members/countMembers', { withCredentials: true })
                 .then((response) => {
                     this.membersAmount = response.data;
                 })
                 .catch(function (error) {
                     console.log(error)
+
                 })
         }
     }

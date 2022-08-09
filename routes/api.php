@@ -19,11 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::get('members', 'Api\MemberController@index');
 Route::get('members/countMembers', 'Api\MemberController@countMembers');
 
 Route::get('countries', 'Api\CountryController@index');
 
-Route::post('save', 'Api\SaveController@index');
+Route::post('saveFirstStep', 'Api\FirstStepController@index');
+Route::post('saveSecondStep', 'Api\SecondStepController@index');
 
 

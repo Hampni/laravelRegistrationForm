@@ -13,5 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'registrationForm');
-Route::view('/members', 'members');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/', 'RegistrationFormController@index');
+    Route::get('/members', 'MembersController@index');
+});

@@ -47,7 +47,7 @@ export default {
     mounted() {
         this.session();
         console.log(this.$session.get('data'))
- //       this.$session.destroy()
+        //       this.$session.destroy()
     },
 
     methods: {

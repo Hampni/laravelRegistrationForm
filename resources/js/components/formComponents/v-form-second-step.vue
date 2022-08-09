@@ -13,7 +13,7 @@
             </div>
 
             <!--second step-->
-            <form class="second-form" id="second-form" @submit="toThirdStep">
+            <form class="second-form" id="second-form" enctype="multipart/form-data" @submit="toThirdStep">
 
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="company_label"
                        for="company">Your
@@ -73,8 +73,9 @@ export default {
                 Object.values(form)[i].style.border = ''
             }
 
-            axios.post('/api/save', data)
+            axios.post('/api/saveSecondStep', data)
                 .then((msg) => {
+                    console.log(msg)
                     this.showThirdStep();
                 })
                 .catch((e) => {
@@ -95,7 +96,7 @@ export default {
                         } else {
                             this.errors = errorsCurrent
                             intersection.forEach((e) => {
-                                document.getElementById(e.id).style.border = '1px solid lightcoral'
+                                document.getElementById(e.id).style.border = '1px solid red'
                             })
                             document.getElementById('agileits-top-first').scrollIntoView();
                         }
