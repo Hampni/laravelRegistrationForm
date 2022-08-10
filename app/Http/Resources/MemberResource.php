@@ -26,7 +26,8 @@ class MemberResource extends JsonResource
             'company' => $this->company,
             'position' => $this->position,
             'about_me' => $this->about_me,
-            'photo' => $this->photo
+            'photo' => $this->photo,
+            'is_shown' => $this->is_shown
         ];
     }
 }

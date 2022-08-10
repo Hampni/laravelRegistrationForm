@@ -8,7 +8,7 @@
                              alt=""/>
                     </div>
                 </div>
-                <div class="col" style="max-width: 400px">
+                <div class="col" style="max-width: 400px; word-wrap: break-word; line-height: 30px;">
                     <div class="reportSubj">{{ member_data.first_name }} &nbsp {{ member_data.last_name }}</div>
                 </div>
                 <div class="col" style=" word-wrap: break-word; max-width: 600px; line-height: 30px;">
@@ -35,6 +35,15 @@ export default {
             }
         }
     },
+    methods: {
+        isShown(member) {
+            if (member.is_shown == 1) {
+                return 'hide'
+            } else {
+                return 'show'
+            }
+        },
+    }
 
 
 }

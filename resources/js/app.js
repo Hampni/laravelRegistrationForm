@@ -25,6 +25,8 @@ import VueSession from "vue-session";
 Vue.use(VueSession);
 Vue.component('form-page', require('./components/v-form.vue').default)
 Vue.component('members-page', require('./components/v-members.vue').default)
+Vue.component('admin-page', require('./components/v-admin-panel.vue').default)
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

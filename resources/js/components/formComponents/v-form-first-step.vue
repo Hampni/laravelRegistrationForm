@@ -190,23 +190,13 @@ export default {
                 .catch((e) => {
                     if (e.response.status === 422) {
                         this.errors = [];
-                        let errorsCurrent = []
 
-                        let intersection = Object.values(form).filter(x => Object.keys(e.response.data.errors).includes(x.id));
-                        for (let i = 0; i < intersection.length; i++) {
-                            for (let key in e.response.data.errors) {
-                                errorsCurrent[i] = errorsCurrent[intersection[i].id] = e.response.data.errors[intersection[i].id]
-                            }
-                        }
-                        if (intersection.length == 0) {
-                            this.showSecondStep()
-                        } else {
-                            this.errors = errorsCurrent
-                            intersection.forEach((e) => {
-                                document.getElementById(e.id).style.border = '1px solid red'
-                            })
-                            document.getElementById('agileits-top-first').scrollIntoView();
-                        }
+                        this.errors = e.response.data.errors
+                        Object.keys(e.response.data.errors).forEach((e) => {
+                            document.getElementById(e).style.border = '1px solid red'
+                        })
+                        document.getElementById('agileits-top-first').scrollIntoView();
+
                     }
                 })
 
