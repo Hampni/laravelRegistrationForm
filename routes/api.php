@@ -23,7 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('members', 'Api\MemberController@index');
 Route::get('members/all', 'Api\MemberController@getAllMembers');
 Route::get('members/countMembers', 'Api\MemberController@countMembers');
-Route::post('members/changeDisplay/{memberId}/{toDo}', 'Api\MemberController@changeDisplay');
+Route::post('members/changeDisplay', 'Api\MemberController@changeDisplay');
+Route::post('members/deleteMember', 'Api\MemberController@deleteMember');
 
 Route::get('countries', 'Api\CountryController@index');
 

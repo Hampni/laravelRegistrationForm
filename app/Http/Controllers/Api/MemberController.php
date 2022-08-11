@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MemberResource;
 use App\Models\Member;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
+
+    // abount of members on one page
+    protected $limit = 10;
 
     public function index()
     {
@@ -17,7 +21,7 @@ class MemberController extends Controller
 
     public function getAllMembers()
     {
-        return MemberResource::collection(Member::all());
+        return MemberResource::collection(Member::paginate($this->limit));
     }
 
     public function countMembers()
@@ -25,9 +29,14 @@ class MemberController extends Controller
         return DB::table('members')->count();
     }
 
-    public function changeDisplay(int $member_id, string $toDo)
+    public function changeDisplay(Request $request)
     {
-        DB::table('members')->where('id', $member_id)->update(['is_shown' => $toDo]);
+        DB::table('members')->where('id', $request->id)->update(['is_shown' => $request->change]);
+        return $request->change;
     }
 
+    public function deleteMember(Request $request)
+    {
+        DB::table('members')->where('id', $request->id)->delete();
+    }
 }

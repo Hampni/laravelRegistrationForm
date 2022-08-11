@@ -521,6 +521,12 @@ input[type="submit"]:hover {
     display: inline-block;
 }
 
+.listItemAdminBase {
+    padding-left: 10px;
+    width: 100%;
+    display: inline-block;
+}
+
 .dataBlock {
     display: inline-block;
     max-width: 100px;
@@ -529,6 +535,14 @@ input[type="submit"]:hover {
     width: 100%;
     line-height: 28px;
     overflow: hidden;
+}
+
+.pageLink {
+
+    color: whitesmoke;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 5px;
 }
 
 .member-image {

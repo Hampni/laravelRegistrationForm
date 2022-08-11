@@ -1,10 +1,9 @@
 <template>
-    <div class="v-admin">
-        <div class="container-admin-panel text-center"
-             style="">
+    <div class="v-admin-panel">
 
+        <div class="container-admin-panel text-center" style="">
             <tr class="listAdmin" style="border-bottom: black 1px solid">
-                <td class="listItemAdmin">
+                <td class="listItemAdminBase">
                     <div class="row" style="text-align: left">
                         <div class="col-sm">
                             <span class="dataBlock">First name</span>
@@ -52,109 +51,126 @@
                 </td>
             </tr>
 
-            <div v-for="member in members">
-                <tr class="listAdmin" style="border-bottom: black 1px solid">
-                    <td class="listItemAdmin">
-                        <div class="row" style="text-align: left">
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.first_name }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.last_name }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.birthday }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.report_subject }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.country }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.phone }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.email }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.company }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.position }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock">{{ member.about_me }}</span>
-                            </div>
-                            <div class="col-sm">
-                                <span class="dataBlock"><a href="">{{ member.photo }}</a></span>
-                            </div>
-                            <div class="col-sm">
-                                <span>
-                                    <button id="hideShow" class="btn btn-info"
-                                            @click="changeDisplay(member.id, toDo(member))">
-                                    {{ toDo(member) }}
-                                    </button>
-                                </span>
-                            </div>
-                            <div class="col-sm">
-                                <span><button class="btn btn-dark">Delete</button></span>
-                            </div>
-                            <div class="col-sm">
-                                <span><button class="btn btn-light">Update</button></span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+            <v-admin-panel-entry-data
+                v-for="member in members"
+                :key="member.id"
+                :member_entry_data="member"
+                :memberId="member.id"
+                @session="deleteMember"
+            />
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+
+        <div class="container" style="padding: 0; border: none; line-height: 40px">
+            <div class="row" style="text-align: center">
+                <div class="col">
+
+                    <a href="" class="pageLink" @click.prevent="prevPage">< Prev</a>
+                    <a href="" class="pageLink" @click.prevent="toPage(current_page - 2)">{{ current_page - 2 < first_page ? null : current_page - 2 }}</a>
+                    <a href="" class="pageLink" @click.prevent="toPage(current_page - 1)">{{ current_page - 1 < first_page ? null : current_page - 1 }}</a>
+                    <a href="" class="pageLink" @click.prevent="toPage(current_page)" style="font-size: 35px"> {{ current_page }}</a>
+                    <a href="" class="pageLink" @click.prevent="toPage(current_page + 1)">{{ current_page + 1 > last_page ? null : current_page + 1 }}</a>
+                    <a href="" class="pageLink" @click.prevent="toPage(current_page + 2)">{{ current_page + 2 > last_page ? null : current_page + 2 }}</a>
+                    <a href="" class="pageLink" @click.prevent="nextPage">Next ></a>
+
+                </div>
             </div>
         </div>
+
     </div>
+
 </template>
 
 <script>
+import VAdminPanelEntryData from "./v-admin-panel-entry-data";
+
 export default {
-    name: 'v-admin',
-    components: {},
-    comments: {},
-    props: {},
+    name: 'v-admin-panel',
+    components: {
+        VAdminPanelEntryData
+    },
     data: function () {
         return {
             members: [],
+            current_page: Number,
+            last_page: Number,
+            first_page: Number
         }
     },
-    computed: {},
-    watch: {},
 
     mounted() {
         this.loadMembers();
     },
 
     methods: {
-        changeDisplay: (memberId, toDo) => {
-
-            let change = toDo == 'hide' ? 0 : 1
-            axios.post('/api/members/changeDisplay/' + memberId + '/' + change)
+        toPage(page) {
+            axios.get('/api/members/all?page=' + page)
                 .then((response) => {
-                    console.log(response)
-                    document.location.reload()
+                    this.members = response.data.data
+                    this.current_page = page
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         },
-        toDo(member) {
-            if (member.is_shown == 1) {
-                return 'hide'
-            } else {
-                return 'show'
+        nextPage: function () {
+            let nextPage;
+            if (this.current_page + 1 <= this.last_page) {
+                nextPage = this.current_page + 1
+                axios.get('/api/members/all?page=' + nextPage)
+                    .then((response) => {
+                        this.members = response.data.data
+                        this.current_page++
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+
+
+        },
+        prevPage: function () {
+            let prevPage;
+            if (this.current_page - 1 >= this.first_page) {
+                prevPage = this.current_page - 1
+                axios.get('/api/members/all?page=' + prevPage)
+                    .then((response) => {
+                        this.members = response.data.data
+                        this.current_page--
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
             }
         },
+        deleteMember: function (memberId) {
+            let data = {};
+            data['id'] = memberId['id'];
 
-        loadMembers: function () {
-            axios.get('/api/members/all')
+            axios.post('/api/members/deleteMember', data)
                 .then((response) => {
-
+                    this.members.forEach((e, index) => {
+                        if (e.id == memberId['id']) {
+                            this.members.splice(index, 1)
+                        }
+                    })
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        loadMembers: function () {
+            axios.get('/api/members/all?page=1')
+                .then((response) => {
                     this.members = response.data.data
+                    this.current_page = response.data.meta.current_page
+                    this.last_page = response.data.meta.last_page
+                    this.first_page = response.data.meta.from
                 })
                 .catch((error) => {
                     console.log(error)

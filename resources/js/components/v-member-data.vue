@@ -18,6 +18,9 @@
                     <div class="reportSubj"><a :href="`mailto:${member_data.email}`">{{ member_data.email }}</a>
                     </div>
                 </div>
+                <div class="col">
+                    <button id="button" @click="onClick">helo</button>
+                </div>
             </div>
         </div>
     </div>
@@ -35,7 +38,13 @@ export default {
             }
         }
     },
+    mounted() {
+    },
     methods: {
+        onClick: function (e) {
+            console.log(e.target.innerHTML = 'bye')
+            //alert('owqpieqpie'+ this.member_data.id)
+        },
         isShown(member) {
             if (member.is_shown == 1) {
                 return 'hide'
