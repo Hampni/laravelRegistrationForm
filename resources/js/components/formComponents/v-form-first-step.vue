@@ -69,9 +69,7 @@
                        for="email">Example: YourEmail@mail.com</label> <br>
                 <input class="text email" style="margin-top: 5px;" type="email" id="email" name="email"
                        placeholder="Email" required="">
-                <div class="wthree-text">
-                    <div class="clear"></div>
-                </div>
+
                 <input id="submit" type="submit" value="Next">
             </form>
 

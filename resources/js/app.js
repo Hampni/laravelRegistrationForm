@@ -9,7 +9,17 @@ require('./bootstrap');
 
 
 window.Vue = require('vue').default;
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import VueSession from "vue-session";
+
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,6 +36,8 @@ Vue.use(VueSession);
 Vue.component('form-page', require('./components/v-form.vue').default)
 Vue.component('members-page', require('./components/v-members.vue').default)
 Vue.component('admin-page', require('./components/v-admin-panel.vue').default)
+Vue.component('update-page', require('./components/v-update.vue').default)
+Vue.component('add-page', require('./components/v-add.vue').default)
 
 
 /**
@@ -38,7 +50,5 @@ const app = new Vue({
     el: '#app',
 });
 
-document.querySelector('.agileits-top-third').style.display = 'none';
-$('.iti.iti--allow-dropdown')[0].style.width = '100%'
-$('.iti.iti--allow-dropdown')[0].style.marginBottom = '13px'
+
 

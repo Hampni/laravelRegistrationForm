@@ -53,6 +53,7 @@ export default {
         }
     },
     mounted() {
+
     },
     methods: {
         showThirdStep: function () {

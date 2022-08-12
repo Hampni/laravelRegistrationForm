@@ -18,9 +18,6 @@
                     <div class="reportSubj"><a :href="`mailto:${member_data.email}`">{{ member_data.email }}</a>
                     </div>
                 </div>
-                <div class="col">
-                    <button id="button" @click="onClick">helo</button>
-                </div>
             </div>
         </div>
     </div>

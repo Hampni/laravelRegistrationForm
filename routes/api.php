@@ -20,10 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('members', 'Api\MemberController@index');
+Route::get('members', 'Api\MemberController@getShownMembers');
 Route::get('members/all', 'Api\MemberController@getAllMembers');
+Route::get('members/one/{id}', 'Api\MemberController@getOneMember');
 Route::get('members/countMembers', 'Api\MemberController@countMembers');
+
 Route::post('members/changeDisplay', 'Api\MemberController@changeDisplay');
+Route::post('members/addMember', 'Api\MemberController@addMember');
+Route::post('members/updateMember', 'Api\MemberController@updateMember');
 Route::post('members/deleteMember', 'Api\MemberController@deleteMember');
 
 Route::get('countries', 'Api\CountryController@index');

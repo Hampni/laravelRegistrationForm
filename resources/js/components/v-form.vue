@@ -38,9 +38,12 @@ export default {
     watch: {},
 
     mounted() {
+        document.querySelector('.agileits-top-third').style.display = 'none';
+        $('.iti.iti--allow-dropdown')[0].style.width = '100%'
+        $('.iti.iti--allow-dropdown')[0].style.marginBottom = '13px'
+
         this.session();
         console.log(this.$session.get('data'))
-        //       this.$session.destroy()
     },
 
     methods: {
@@ -66,3 +69,5 @@ export default {
 
 }
 </script>
+
+

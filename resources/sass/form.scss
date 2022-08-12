@@ -525,16 +525,39 @@ input[type="submit"]:hover {
     padding-left: 10px;
     width: 100%;
     display: inline-block;
+    font-weight: bold;
+}
+
+.updateInput {
+
+}
+
+.bv-example-row-update {
+    color: black;
+    line-height: 60px;
+    border: none;
+    font-size: 20px;
+}
+
+.bv-example-row {
+    color: black;
+    border: none;
+    padding: 0;
+    line-height: 15px;
+
 }
 
 .dataBlock {
+    padding: 15px;
     display: inline-block;
-    max-width: 100px;
+    max-width: fit-content;
     max-height: 100px;
-    word-wrap: break-word;
     width: 100%;
     line-height: 28px;
-    overflow: hidden;
+}
+
+.col-sm {
+    max-width: fit-content;
 }
 
 .pageLink {
@@ -549,6 +572,23 @@ input[type="submit"]:hover {
     width: 100px;
     height: 100px;
     border-radius: 30px;
+}
+
+.allData {
+    float: left;
+    vertical-align: middle;
+    border-radius: 30px;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    border: solid 2px black;
+}
+
+.allDataConvert {
+    padding: 20px;
+     position: fixed;
+     top: 10%;
+     z-index: 95;
 }
 
 .reportSubj {

@@ -1,6 +1,6 @@
 <template>
     <div class="v-form-third-step" id="v-form-third-step">
-        <div class="agileits-top-third" id="agileits-top-third">
+        <div class="agileits-top-third" id="agileits-top-third" ref="agileits-top-third">
             <!--Share buttons-->
             <!--Facebook-->
             <div style="padding:25px">
@@ -8,7 +8,7 @@
                     <a target="_blank"
                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprodanets.trainee.albedo.dev%2F&amp;src=sdkpreparse"
                        class="fb-xfbml-parse-ignore">
-                        <button style="width: 100%; margin-bottom: 10px; " class="btn btn-primary">Facebook
+                        <button style="width: 100%; margin-bottom: 10px; " class="btn btn-success">Facebook
                         </button>
                     </a>
                 </div>
@@ -27,7 +27,7 @@
 
 
             <!--All members page-->
-            <button onclick="location.href='/members';" type="button" class="btn btn-primary btn-lg btn-block">
+            <button onclick="location.href='/members';" style="width: 100%" type="button" class="btn btn-success btn-lg btn-block">
                 All Members ({{ membersAmount }})
             </button>
         </div>

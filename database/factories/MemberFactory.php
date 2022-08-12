@@ -24,7 +24,7 @@ class MemberFactory extends Factory
             'company' => $this->faker->company(),
             'position' => $this->faker->word(),
             'about_me' => $this->faker->sentence(5),
-            'photo' => $this->faker->word(),
+            'photo' => 'default.png',
             'is_shown' => 1
         ];
     }
