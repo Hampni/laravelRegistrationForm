@@ -2,6 +2,7 @@
     <div class="v-form-second-step" id="v-form-second-step">
         <div class="agileits-top-second" id="agileits-top-second">
 
+            <!--Errors displaying-->
             <div id="errors" v-if="errors">
                 <div v-for="(v,k) in errors" :key="k"
                      class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"

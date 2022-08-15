@@ -2,8 +2,8 @@
     <div class="v-admin-panel-entry-data">
         <tr class="listAdmin" style="border-bottom: black 1px solid">
             <td class="listItemAdmin">
-                <div class="row" style="text-align: left">
-                    <div class="col-sm" style="max-width: 50px">
+                <div class="row" style="padding: 20px">
+                    <div class="col-sm" style="max-width: 100px">
                         <span class="dataBlock">{{ member_entry_data.id }}</span>
                     </div>
                     <div class="col-sm" style="max-width: 170px">
@@ -18,25 +18,21 @@
                     <div class="col-sm" style="max-width: 270px">
                         <span class="dataBlock">{{ member_entry_data.email }}</span>
                     </div>
-                    <div class="col-sm">
-                        <span class="dataBlock">{{ member_entry_data.about_me }}</span>
+                    <div class="col-sm" style="max-width: 270px">
+                        <span class="dataBlock">{{ member_entry_data.phone }}</span>
                     </div>
+
                     <div class="col-sm">
                         <span class="dataBlock">
-                            <div class="mt-3">
-                                <b-button-group>
-                                    <b-button variant="success"
+                                    <b-button variant="info"
                                               @click="showAllData(member_entry_data.id)">Show all data</b-button>
                                     <b-button :variant="isShown ? 'warning' : 'info'"
                                               @click="changeDisplay">{{ isShown ? 'hide' : 'show' }}</b-button>
                                     <b-button @click="deleteMember(member_entry_data.id)">Delete</b-button>
                                     <a style="text-decoration: none;"
                                        :href="'/update/'+ member_entry_data.id">
-                                        <b-button style="border-bottom-left-radius: 0; border-top-left-radius: 0;"
-                                                  variant="light">Update</b-button>
+                                        <b-button variant="light">Update</b-button>
                                 </a>
-                                </b-button-group>
-                            </div>
                         </span>
                     </div>
                 </div>
@@ -58,7 +54,6 @@ export default {
         memberId: Number,
     },
     mounted() {
-
     },
     data: function () {
         return {
@@ -66,9 +61,6 @@ export default {
         }
     },
     methods: {
-        updateData: function (memberId) {
-
-        },
         showAllData: function (memberId) {
             this.$emit('showAllData', {
                 id: memberId

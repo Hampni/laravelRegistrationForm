@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 import VFormFirstStep from "./formComponents/v-form-first-step";
 import VFormSecondStep from "./formComponents/v-form-second-step";
 import VFormThirdStep from "./formComponents/v-form-third-step";
@@ -27,25 +26,17 @@ export default {
         VFormSecondStep,
         VFormThirdStep
     },
-    comments: {},
-    props: {},
     data: function () {
         return {
             membersAmount: null,
         }
     },
-    computed: {},
-    watch: {},
-
     mounted() {
         document.querySelector('.agileits-top-third').style.display = 'none';
-        $('.iti.iti--allow-dropdown')[0].style.width = '100%'
+        $('.iti.iti--allow-dropdown')[0].style.width = '94%'
         $('.iti.iti--allow-dropdown')[0].style.marginBottom = '13px'
-
         this.session();
-        console.log(this.$session.get('data'))
     },
-
     methods: {
         session: function () {
             this.$session.start()

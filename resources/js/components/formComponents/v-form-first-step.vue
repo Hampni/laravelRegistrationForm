@@ -1,8 +1,8 @@
 <template>
     <div class="v-form-first-step" id="v-form-first-step">
         <div class="agileits-top" id="agileits-top-first">
-            <!--first step-->
 
+            <!--Errors displaying-->
             <div id="errors" v-if="errors">
                 <div v-for="(v,k) in errors" :key="k"
                      class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"
@@ -60,7 +60,7 @@
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100; margin-bottom: 5px"
                        id="phone_label" for="phone">Example: +380 (xxx)
                     xxx-xxx</label><br>
-                <input class="text email" style="margin-top: 5px; display: block" id="phone" type="text"
+                <input class="text email" style="margin-top: 5px; display: block; width: 100%" id="phone" type="text"
                        name="phone"
                        placeholder="Phone" required="">
                 <br>
@@ -85,7 +85,6 @@ import 'intl-tel-input/build/css/intlTelInput.css';
 
 export default {
     name: "v-form-first-step",
-    components: {},
     data: function () {
         return {
             countries: [],
@@ -106,7 +105,6 @@ export default {
                 }
             )
             const input = document.querySelector("#phone");
-
             const iti = intlTelInput(input)
             $('#phone').on(
                 'change', function () {
@@ -173,36 +171,32 @@ export default {
         toSecondStep: function (e) {
             e.preventDefault();
 
+            //collecting data from form
             let form = document.querySelector('.first-form');
             let data = new FormData(form);
 
             for (let i = 0; i < Object.values(form).length - 1; i++) {
                 Object.values(form)[i].style.border = ''
             }
-
+            //sending data
             axios.post('/api/saveFirstStep', data)
                 .then((msg) => {
-                    console.log(msg)
                     this.showSecondStep();
                 })
+                //catching errors and displaying them
                 .catch((e) => {
                     if (e.response.status === 422) {
                         this.errors = [];
-
                         this.errors = e.response.data.errors
+
                         Object.keys(e.response.data.errors).forEach((e) => {
                             document.getElementById(e).style.border = '1px solid red'
                         })
                         document.getElementById('agileits-top-first').scrollIntoView();
-
                     }
                 })
-
         },
     }
 }
 </script>
 
-<style scoped>
-
-</style>

@@ -9,6 +9,6 @@ class MembersController extends Controller
 {
     public function index(Request $request)
     {
-        return view('members');
+        return view('members', ['title' => 'All Members']);
     }
 }

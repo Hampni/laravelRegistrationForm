@@ -9,6 +9,6 @@ class RegistrationFormController extends Controller
 {
     public function index(Request $request)
     {
-        return view('registrationForm');
+        return view('registrationForm', ['title' => 'Registration Form']);
     }
 }

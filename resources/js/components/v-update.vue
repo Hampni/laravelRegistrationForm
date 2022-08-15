@@ -1,97 +1,207 @@
 <template>
     <div class="v-update">
         <div class="convert">
+
+            <div class="backButton">
+                <h1>
+                    <a href="/adminPanel">
+                        <b-button variant="success">Back to Admin Panel</b-button>
+                    </a>
+                </h1>
+            </div>
+
             <b-container class="bv-example-row-update">
                 <b-row>
                     <b-col>
-                        Current Information:
-                        <div class="currentData">
-                            <div><b>Id:</b> {{ member.id }}</div>
-                            <div><b>First name:</b> {{ member.first_name }}</div>
-                            <div><b> Last name:</b> {{ member.last_name }}</div>
-                            <div><b>Birthday:</b> {{ member.birthday }}</div>
-                            <div><b> Report subject:</b> {{ member.report_subject }}</div>
-                            <div><b> Country:</b> {{ member.country }}</div>
-                            <div><b> Phone:</b> {{ member.phone }}</div>
-                            <div><b> Email:</b> {{ member.email }}</div>
-                            <div><b> Company:</b> {{ member.company }}</div>
-                            <div><b> Position:</b> {{ member.position }}</div>
-                            <div><b> About me:</b> {{ member.about_me }}</div>
-                            <div style="padding-top: 30px">
-                                <img style="width: 300px" v-bind:src="'/images/memberImages/' + member.photo"
-                                     alt=""/>
+                        <h1> Current Information:</h1>
+                        <div class="main-w3layouts wrapper">
+                            <div class="main-agileinfo" style="width: 100%;">
+                                <div class="agileits-top" id="agileits-top-first" style="line-height: 20px">
+                                    <form>
+
+                                        <!--First name-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
+                                               for="first_name_c">First name:</label>
+                                        <input style="margin-top: 5px;" type="text" id="first_name_c"
+                                               name="first_name" :value="member.first_name" disabled>
+
+                                        <!--Last name-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="last_name_c">Last name:</label>
+                                        <input style="margin-top: 5px;" type="text" id="last_name_c"
+                                               name="last_name" :value="member.last_name" disabled>
+
+                                        <!--Birthday-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="birthday_c">Birthday:</label>
+                                        <input style="margin-top: 5px;" type="text" id="birthday_c" name="birthday"
+                                               :value="member.birthday" disabled>
+
+                                        <!--Report Subject-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="report_subject_c">Report subject:</label>
+                                        <input style="margin-top: 5px;" type="text" id="report_subject_c"
+                                               name="report_subject" :value="member.report_subject" disabled>
+
+                                        <!--Country-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="country_c">Country:</label>
+                                        <input style="margin-top: 5px;" type="text" id="country_c"
+                                               name="report_subject" :value="member.country" disabled>
+
+                                        <!--Phone number-->
+                                        <label
+                                            style="color: floralwhite; font-size: 14px; font-weight: 100; margin-bottom: 5px"
+                                            for="phone_c">Phone number:</label><br>
+                                        <input style=" margin-top: 5px;" id="phone_c" type="text"
+                                               name="phone" :value="member.phone" disabled>
+
+                                        <!--Email-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100 "
+                                               for="email_c">Email:</label> <br>
+                                        <input style="margin-top: 5px;" type="email" id="email_c" name="email"
+                                               :value="member.email" disabled>
+
+                                        <!--Company-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="company_c">
+                                            Company:</label>
+                                        <input type="text" id="company_c" name="company" :value="member.company"
+                                               disabled>
+
+                                        <!--Position-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="position_c">
+                                            Position:</label>
+                                        <input style="margin-top: 0" type="text" id="position_c" name="position"
+                                               :value="member.position" disabled>
+
+                                        <!--About me-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="about_me_c">About me:</label>
+                                        <textarea class="form-control" name="about_me"
+                                                  id="about_me_c" rows="4" :value="member.about_me" disabled></textarea>
+
+                                        <!--Photo-->
+                                        <div style="padding-top: 30px">
+                                            <img v-bind:src="'/images/memberImages/' + member.photo"
+                                                 alt=""/>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </b-col>
                     <b-col>
-                        <div class="newData">
-                            New Information:
-                            <div><b>Id:</b> {{ member.id }}</div>
-                            <form ref="updateForm" class="updateForm" action="" @submit="updateData">
-                                <input type="hidden" name="id" :value="member.id">
-                                <label for="first_name"><b>First name:</b></label>
-                                <input type="text" id="first_name" name="first_name"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.first_name">
+                        <h1>New Information:</h1>
+                        <div class="main-w3layouts wrapper">
+                            <div class="main-agileinfo" style="width: 100%;">
+                                <div class="agileits-top" id="agileits-top-first" style="line-height: 20px">
 
-                                <label for="last_name"><b>Last name:</b></label>
-                                <input type="text" id="last_name" name="last_name"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.last_name">
+                                    <!--Errors displaying-->
+                                    <div id="errors" v-if="errors">
+                                        <div v-for="(v,k) in errors" :key="k"
+                                             class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"
+                                             style="border: 1px solid red">
+                                            <p v-for="error in v" :key="error" class="text-sm">
+                                                {{ error }}
+                                            </p>
+                                        </div>
+                                    </div>
 
-                                <label for="birthday"><b>Birthday:</b></label>
-                                <input type="text" id="birthday" name="birthday"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.birthday">
+                                    <form ref="updateForm" class="updateForm" action="" @submit="updateData">
 
-                                <label for="report_subject"><b>Report subject:</b></label>
-                                <input type="text" id="report_subject" name="report_subject"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.report_subject">
+                                        <input type="hidden" name="id" :value="member.id">
 
-                                <label for="country"><b>Country:</b></label>
-                                <input type="text" id="country" name="country"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.country">
+                                        <!--First name-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="first_name" class="label_input">First name:</label>
+                                        <input type="text" id="first_name" name="first_name"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.first_name">
 
-                                <label for="phone"><b>Phone:</b></label>
-                                <input type="text" id="phone" name="phone"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.phone">
+                                        <!--Last name-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="last_name">Last name:</label>
+                                        <input type="text" id="last_name" name="last_name"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.last_name">
 
-                                <label for="email"><b>Email:</b></label>
-                                <input type="text" id="email" name="email"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.email">
+                                        <!--Birthday-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="birthday">Birthday:</label>
+                                        <input type="text" id="birthday" name="birthday"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.birthday">
 
-                                <label for="company"><b>Company:</b></label>
-                                <input type="text" id="company" name="company"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.company">
+                                        <!--Report subject-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="report_subject">Report subject:</label>
+                                        <input type="text" id="report_subject" name="report_subject"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.report_subject">
 
-                                <label for="position"><b>Position:</b></label>
-                                <input type="text" id="position" name="position"
-                                       style="padding: 3px; line-height: 15px; padding-left: 10px; border-radius: 20px;"
-                                       :value="member.position">
+                                        <!--Country-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="country">Country:</label>
+                                        <input type="text" id="country" name="country"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.country">
 
-                                <label for="about_me"><b>About me:</b></label>
-                                <input type="text" id="about_me" name="about_me"
-                                       style="padding: 3px; line-height: 15px; border-radius: 20px; padding-left: 10px"
-                                       :value="member.about_me">
+                                        <!--Phone-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="phone">Phone:</label>
+                                        <input type="text" id="phone" name="phone"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.phone">
 
-                                <label style="padding-top: 10px; color: white" for="formFileLg"
-                                       class="form-label">Photo:</label>
-                                <input style="background: white; color: black" class="form-control form-control-lg"
-                                       id="formFileLg"
-                                       name="image" type="file" accept=".jpg,.png,.jpeg">
+                                        <!--Email-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="email">Email:</label>
+                                        <input type="text" id="email" name="email"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.email">
 
-                                <input type="submit" value="Update">
-                            </form>
+                                        <!--Company-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="company">Company:</label>
+                                        <input type="text" id="company" name="company"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.company">
+
+                                        <!--Position-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="position">Position:</label>
+                                        <input type="text" id="position" name="position"
+                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               :value="member.position">
+
+                                        <!--About-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="about_me">About me:</label>
+                                        <textarea class="form-control"
+                                                  name="about_me"
+                                                  id="about_me"
+                                                  rows="4"
+                                                  :value="member.about_me"></textarea>
+
+                                        <!--Photo-->
+                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               for="formFileLg"
+                                               class="form-label">Photo:</label>
+                                        <input style="background: white; color: black"
+                                               class="form-control form-control-lg"
+                                               id="formFileLg"
+                                               name="image" type="file" accept=".jpg,.png,.jpeg">
+                                        <input type="submit" value="Update">
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </b-col>
                 </b-row>
             </b-container>
-
         </div>
     </div>
 </template>
@@ -106,31 +216,46 @@ export default {
     data: function () {
         return {
             member: {},
+            errors: []
         }
     },
-
     mounted() {
         this.getMember();
     },
-
     methods: {
+
         updateData: function (e) {
             e.preventDefault();
 
+
+            //collecting data from form
             let form = document.querySelector('.updateForm')
             let data = new FormData(form);
 
+            for (let i = 0; i < Object.values(form).length - 1; i++) {
+                Object.values(form)[i].style.border = ''
+                console.log(Object.values(form)[i].style.border)
+            }
+
+
             axios.post('/api/members/updateMember', data)
                 .then((msg) => {
-                    alert('Successfully updated')
                     this.getMember();
+                    this.errors = [];
+                    alert('Successfully updated')
                 })
+                //catching errors and displaying them
                 .catch((e) => {
                     if (e.response.status === 422) {
                         this.errors = [];
+                        this.errors = e.response.data.errors
+
+                        Object.keys(e.response.data.errors).forEach((e) => {
+                            document.getElementById(e).style.border = '1px solid red'
+                        })
+                        document.getElementById('agileits-top-first').scrollIntoView();
                     }
                 })
-
         },
         getMember: function () {
             axios.get('/api/members/one/' + this.id)

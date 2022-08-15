@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddNewMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
 use App\Http\Resources\MemberResource;
 use App\Models\Member;
 use Illuminate\Http\Request;
@@ -12,17 +13,14 @@ use Illuminate\Support\Facades\DB;
 class MemberController extends Controller
 {
 
-    // amount of members on one page
-    protected $limit = 30;
-
     public function getShownMembers()
     {
-        return MemberResource::collection(Member::where('is_shown', 1)->paginate($this->limit));
+        return MemberResource::collection(Member::where('is_shown', 1)->get());
     }
 
     public function getAllMembers()
     {
-        return MemberResource::collection(Member::paginate($this->limit));
+        return MemberResource::collection(Member::all());
     }
 
     public function getOneMember($id)
@@ -55,7 +53,7 @@ class MemberController extends Controller
         return 'success';
     }
 
-    public function updateMember(Request $request)
+    public function updateMember(UpdateMemberRequest $request)
     {
 
         if (!empty($request->file('image'))) {
@@ -64,6 +62,7 @@ class MemberController extends Controller
             $file->move(public_path('images/memberImages'), $file_name);
             $_POST['photo'] = $file_name;
         }
+
         $_POST['updated_at'] = date_create()->format('Y-m-d H:i:s');
 
         DB::table('members')->where('id', $_POST['id'])->update($_POST);

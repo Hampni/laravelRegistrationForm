@@ -25,7 +25,9 @@ class MemberFactory extends Factory
             'position' => $this->faker->word(),
             'about_me' => $this->faker->sentence(5),
             'photo' => 'default.png',
-            'is_shown' => 1
+            'is_shown' => 1,
+            'created_at' => now(),
+            'updated_at' => now()
         ];
     }
 }

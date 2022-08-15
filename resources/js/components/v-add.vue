@@ -1,6 +1,14 @@
 <template>
     <div class="v-add">
 
+        <div class="backButton">
+            <h1>
+                <a href="/adminPanel">
+                    <b-button variant="success">Back to Admin Panel</b-button>
+                </a>
+            </h1>
+        </div>
+
         <h1>Add new member</h1>
         <div class="main-w3layouts wrapper">
             <div class="main-agileinfo">
@@ -135,6 +143,9 @@ export default {
         this.datepicker();
         this.mask();
         this.getCountries();
+
+        $('.iti.iti--allow-dropdown')[0].style.width = '94%'
+        $('.iti.iti--allow-dropdown')[0].style.marginBottom = '13px'
     },
 
     methods: {

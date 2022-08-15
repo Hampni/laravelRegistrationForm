@@ -22,11 +22,11 @@ class CreateMembersTable extends Migration
             $table->text('country');
             $table->string('phone');
             $table->string('email');
-            $table->string('company');
-            $table->string('position');
-            $table->string('about_me');
-            $table->string('photo');
-            $table->integer('is_shown');
+            $table->string('company')->nullable();
+            $table->string('position')->nullable();
+            $table->string('about_me')->nullable();
+            $table->string('photo')->default('default.png');
+            $table->integer('is_shown')->default('1');
             $table->timestamps();
         });
     }

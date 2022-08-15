@@ -10,16 +10,16 @@ class AdminPanelController extends Controller
 {
     public function index(Request $request)
     {
-        return view('adminPanel');
+        return view('adminPanel', ['title' => 'Admin Panel']);
     }
 
     public function update($member_id)
     {
-        return view('updateMember', ['id' => $member_id]);
+        return view('updateMember', ['id' => $member_id, 'title' => 'Update Member']);
     }
 
     public function add()
     {
-        return view('addMember');
+        return view('addMember', ['title' => 'Add Member']);
     }
 }

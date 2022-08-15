@@ -1,47 +1,37 @@
 <template>
     <div class="v-members">
         <div class="main-w3layouts wrapper">
-
             <div class="backButton">
                 <h1>
                     <a href="/">
-                        <button class="btn btn-success">Back to Form</button>
+                        <b-button variant="success">Back to Form</b-button>
                     </a>
                 </h1>
             </div>
             <h1>All members</h1>
-
             <div class="main-agileinfo" style="width: 100%;">
                 <div class="members-convert">
-                    <v-member-data
-                        v-for="member in members"
-                        :key="member.id"
-                        :member_data="member"
-                    />
+                    <b-row>
+                        <v-member-data cols="12" sm="4" class="my-1"
+                                       v-for="(member, index) in paginatedItems"
+                                       :key="member.id"
+                                       :member_data="member">
+                        </v-member-data>
+                    </b-row>
+                    <b-row>
+                        <b-pagination
+                            @change="onPageChanged"
+                            :total-rows="totalRows"
+                            :per-page="perPage"
+                            v-model="currentPage"
+                            class="my-2"
+                            align="center"
+                            size="lg"
+                        />
+                    </b-row>
                 </div>
             </div>
         </div>
-
-        <!--pagination-->
-        <b-container class="bv-example-row" style="padding: 20px">
-            <b-row style="text-align: center">
-                <b-col>
-                    <a href="" class="pageLink" @click.prevent="firstPage(first_page)"><< First</a>
-                    <a href="" class="pageLink" @click.prevent="prevPage">< Prev</a>
-                    <a href="" class="pageLink" @click.prevent="toPage(current_page - 1)">{{
-                            current_page - 1 < first_page ? null : current_page - 1
-                        }}</a>
-                    <a href="" class="pageLink" @click.prevent="toPage(current_page)" style="font-size: 35px">
-                        {{ current_page }}</a>
-                    <a href="" class="pageLink" @click.prevent="toPage(current_page + 1)">{{
-                            current_page + 1 > last_page ? null : current_page + 1
-                        }}</a>
-                    <a href="" class="pageLink" @click.prevent="nextPage">Next ></a>
-                    <a href="" class="pageLink" @click.prevent="lastPage(last_page)">Last >></a>
-                </b-col>
-
-            </b-row>
-        </b-container>
 
     </div>
 </template>
@@ -57,9 +47,13 @@ export default {
     data: function () {
         return {
             members: [],
-            current_page: Number,
-            last_page: Number,
-            first_page: Number
+            items: [],
+            paginatedItems: [],
+            currentPage: 1,
+
+            //Amount of members on page
+            perPage: 10,
+            totalRows: ''
         }
     },
 
@@ -68,75 +62,24 @@ export default {
     },
 
     methods: {
-        firstPage(first_page) {
-            axios.get('/api/members/all?page=' + first_page)
-                .then((response) => {
-                    this.members = response.data.data
-                    this.current_page = first_page
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+        paginate(page_size, page_number) {
+            let itemsToParse = this.items;
+            this.paginatedItems = itemsToParse.slice(
+                page_number * page_size,
+                (page_number + 1) * page_size
+            );
         },
-        lastPage(last_page) {
-            axios.get('/api/members/all?page=' + last_page)
-                .then((response) => {
-                    this.members = response.data.data
-                    this.current_page = last_page
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        toPage(page) {
-            axios.get('/api/members/all?page=' + page)
-                .then((response) => {
-                    this.members = response.data.data
-                    this.current_page = page
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        nextPage: function () {
-            let nextPage;
-            if (this.current_page + 1 <= this.last_page) {
-                nextPage = this.current_page + 1
-                axios.get('/api/members/all?page=' + nextPage)
-                    .then((response) => {
-                        this.members = response.data.data
-                        this.current_page++
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
-            }
-
-
-        },
-        prevPage: function () {
-            let prevPage;
-            if (this.current_page - 1 >= this.first_page) {
-                prevPage = this.current_page - 1
-                axios.get('/api/members/all?page=' + prevPage)
-                    .then((response) => {
-                        this.members = response.data.data
-                        this.current_page--
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
-            }
+        onPageChanged(page) {
+            this.paginate(this.perPage, page - 1);
         },
         loadMembers: function () {
-            axios.get('/api/members?page=1')
+            axios.get('/api/members')
                 .then((response) => {
                     this.members = response.data.data;
-
-                    this.current_page = response.data.meta.current_page
-                    this.last_page = response.data.meta.last_page
-                    this.first_page = response.data.meta.from
-
+                    this.totalRows = this.members.length;
+                    this.items = this.members;
+                    this.paginatedItems = this.members;
+                    this.paginate(this.perPage, 0);
                 })
                 .catch(function (error) {
                     console.log(error)

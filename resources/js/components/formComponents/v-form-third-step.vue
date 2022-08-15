@@ -1,6 +1,7 @@
 <template>
     <div class="v-form-third-step" id="v-form-third-step">
         <div class="agileits-top-third" id="agileits-top-third" ref="agileits-top-third">
+
             <!--Share buttons-->
             <!--Facebook-->
             <div style="padding:25px">
@@ -27,7 +28,8 @@
 
 
             <!--All members page-->
-            <button onclick="location.href='/members';" style="width: 100%" type="button" class="btn btn-success btn-lg btn-block">
+            <button onclick="location.href='/members';" style="width: 100%" type="button"
+                    class="btn btn-success btn-lg btn-block">
                 All Members ({{ membersAmount }})
             </button>
         </div>
@@ -38,9 +40,7 @@
 
 export default {
     name: "v-form-third-step",
-    components: {
-
-    },
+    components: {},
     data: function () {
         return {
             membersAmount: null,
@@ -51,7 +51,7 @@ export default {
     },
     methods: {
         loadMembersAmount: function () {
-            axios.get('/api/members/countMembers', { withCredentials: true })
+            axios.get('/api/members/countMembers', {withCredentials: true})
                 .then((response) => {
                     this.membersAmount = response.data;
                 })

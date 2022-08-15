@@ -164,6 +164,10 @@ a.linkPagination {
     padding: 3em;
 }
 
+.text-sm {
+    margin: 0;
+}
+
 .agileits-top-third {
 
     padding: 3em;
@@ -548,7 +552,6 @@ input[type="submit"]:hover {
 }
 
 .dataBlock {
-    padding: 15px;
     display: inline-block;
     max-width: fit-content;
     max-height: 100px;
@@ -557,6 +560,7 @@ input[type="submit"]:hover {
 }
 
 .col-sm {
+    line-height: 25px;
     max-width: fit-content;
 }
 
