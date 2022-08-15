@@ -21,12 +21,17 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    public function showLoginForm()
+    {
+        return view('auth.login', ['title' => 'Login']);
+    }
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::FORM;
+    protected $redirectTo = RouteServiceProvider::ADMINPANEL;
 
     /**
      * Create a new controller instance.

@@ -24,10 +24,10 @@ class FirstStepRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|regex:/^[\p{Alphabetic}\-._ ]+$/u',
-            'last_name' => 'required|regex:/^[\p{Alphabetic}\-._ ]+$/u',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'birthday' => 'required|date',
-            'report_subject' => 'required|max:500|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u',
+            'report_subject' => 'required|max:500|regex:/^[\pL\s\0-9\-]+$/u',
             'country' => 'required',
             'phone' => 'required',
             'email' => 'required|email|unique:members,email'

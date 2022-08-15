@@ -12,8 +12,9 @@ class FirstStepController extends Controller
 {
     public function index(FirstStepRequest $request)
     {
-        $_POST['created_at'] = date_create()->format('Y-m-d H:i:s');
-        $id = DB::table('members')->insertGetId($_POST);
+        $request->created_at = date_create()->format('Y-m-d H:i:s');
+        $request->updated_at = date_create()->format('Y-m-d H:i:s');
+        $id = DB::table('members')->insertGetId($request->all());
         $request->session()->put('id', $id);
         return 'success';
     }

@@ -24,16 +24,16 @@ class UpdateMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|regex:/^[\p{Alphabetic}\-._ ]+$/u',
-            'last_name' => 'required|regex:/^[\p{Alphabetic}\-._ ]+$/u',
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
             'birthday' => 'required|date|max:10',
-            'report_subject' => 'required|max:500|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u',
+            'report_subject' => 'required|max:500|regex:/^[\pL\s\0-9\-]+$/u',
             'country' => 'required',
             'phone' => 'required',
             'email' => 'required|email|',
-            'company' => 'nullable|max:100|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u',
-            'position' => 'nullable|max:100|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u',
-            'about_me' => 'nullable|max:500|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u'
+            'company' => 'nullable|max:100|regex:/^[\pL\s\0-9\-]+$/u',
+            'position' => 'nullable|max:100|regex:/^[\pL\s\0-9\-]+$/u',
+            'about_me' => 'nullable|max:500|regex:/^[\pL\s\0-9\-]+$/u'
         ];
     }
 

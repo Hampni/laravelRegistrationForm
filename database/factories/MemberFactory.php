@@ -15,7 +15,7 @@ class MemberFactory extends Factory
     {
         return [
             'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->name(),
+            'last_name' => $this->faker->lastName(),
             'birthday' => $this->faker->date(),
             'report_subject' => $this->faker->sentence(3),
             'country' => $this->faker->country(),

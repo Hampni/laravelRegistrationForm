@@ -26,7 +26,7 @@
                             </div>
                         </div>
 
-                        <form id="formAddNew" ref="formAddNew" class="form" @submit="addNewMember">
+                        <form ref="formAddNew" action="" class="form" @submit="addNewMember">
 
                             <!--First name-->
                             <label style="color: floralwhite; font-size: 14px; font-weight: 100" class="label_input"
@@ -109,7 +109,8 @@
                             <!--Photo-->
                             <label style="padding-top: 10px; color: white" for="formFileLg"
                                    class="form-label">Photo:</label>
-                            <input style="background: white; color: black" class="form-control form-control-lg"
+                            <input style="background: white; color: black"
+                                   class="form-control form-control-lg"
                                    id="formFileLg"
                                    name="image" type="file" accept=".jpg,.png,.jpeg">
 
@@ -162,6 +163,7 @@ export default {
             axios.post('/api/members/addMember', data)
                 .then((msg) => {
                     console.log(msg)
+                    alert('Succesfully added')
                     document.location.reload()
                 })
                 .catch((e) => {

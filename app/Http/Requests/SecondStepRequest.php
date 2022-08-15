@@ -24,9 +24,9 @@ class SecondStepRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => 'nullable|max:100|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u',
-            'position' => 'nullable|max:100|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u',
-            'about_me' => 'nullable|max:500|regex:/^[\p{Alphabetic}0-9\-._ ]+$/u'
+            'company' => 'nullable|max:100|regex:/^[\pL\s\0-9\-]+$/u',
+            'position' => 'nullable|max:100|regex:/^[\pL\s\0-9\-]+$/u',
+            'about_me' => 'nullable|max:500|regex:/^[\pL\s\0-9\-]+$/u'
         ];
     }
 

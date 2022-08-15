@@ -15,12 +15,12 @@ class MemberController extends Controller
 
     public function getShownMembers()
     {
-        return MemberResource::collection(Member::where('is_shown', 1)->get());
+        return MemberResource::collection(Member::where('is_shown', 1)->orderBy('id', 'desc')->get());
     }
 
     public function getAllMembers()
     {
-        return MemberResource::collection(Member::all());
+        return MemberResource::collection(Member::orderBy('id', 'desc')->get());
     }
 
     public function getOneMember($id)
@@ -49,8 +49,8 @@ class MemberController extends Controller
         }
 
         $_POST['created_at'] = date_create()->format('Y-m-d H:i:s');
-        $id = DB::table('members')->insert($_POST);
-        return 'success';
+        DB::table('members')->insert($_POST);
+        return $file_name;
     }
 
     public function updateMember(UpdateMemberRequest $request)
@@ -66,7 +66,6 @@ class MemberController extends Controller
         $_POST['updated_at'] = date_create()->format('Y-m-d H:i:s');
 
         DB::table('members')->where('id', $_POST['id'])->update($_POST);
-        return 'success';
     }
 
     public function deleteMember(Request $request)
