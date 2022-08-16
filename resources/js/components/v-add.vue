@@ -165,9 +165,7 @@ export default {
             let data = new FormData(form);
 
             let date = document.querySelector('.vdp-datepicker').children[0].children[0].value;
-
             data.append('birthday', date)
-
 
             for (let i = 0; i < Object.values(form).length - 1; i++) {
                 Object.values(form)[i].style.border = ''
