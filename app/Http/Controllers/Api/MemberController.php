@@ -68,6 +68,11 @@ class MemberController extends Controller
         DB::table('members')->where('id', $_POST['id'])->update($_POST);
     }
 
+    public function deletePhoto(Request $request)
+    {
+        DB::table('members')->where('id', $request->id)->update($request->all());
+    }
+
     public function deleteMember(Request $request)
     {
         DB::table('members')->where('id', $request->id)->delete();

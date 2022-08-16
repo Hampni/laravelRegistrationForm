@@ -24,8 +24,8 @@ class UpdateMemberRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
+            'first_name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'last_name' => 'required|regex:/^[\pL\s\-]+$/u',
             'birthday' => 'required|date',
             'report_subject' => 'required|max:500|regex:/^[\pL\s\0-9\-]+$/u',
             'country' => 'required',

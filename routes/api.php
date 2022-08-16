@@ -28,6 +28,7 @@ Route::get('members/countMembers', 'Api\MemberController@countMembers');
 Route::post('members/changeDisplay', 'Api\MemberController@changeDisplay');
 Route::post('members/addMember', 'Api\MemberController@addMember');
 Route::post('members/updateMember', 'Api\MemberController@updateMember');
+Route::post('members/deletePhoto', 'Api\MemberController@deletePhoto');
 Route::post('members/deleteMember', 'Api\MemberController@deleteMember');
 
 Route::get('countries', 'Api\CountryController@index');

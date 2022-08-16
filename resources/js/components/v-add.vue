@@ -47,8 +47,7 @@
 
                             <!--Birthday-->
                             <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="birthday_label"
-                                   for="birthday">Insert
-                                full date: YYYY.MM.DD</label>
+                                   for="birthday">Select date:</label>
                             <datepicker id="birthday"
                                         :value="date"
                                         format="yyyy-MM-dd"

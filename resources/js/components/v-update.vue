@@ -13,90 +13,9 @@
             <b-container class="bv-example-row-update">
                 <b-row>
                     <b-col>
-                        <h1> Current Information:</h1>
+                        <h1>Update Information:</h1>
                         <div class="main-w3layouts wrapper">
-                            <div class="main-agileinfo" style="width: 100%;">
-                                <div class="agileits-top" id="agileits-top-first" style="line-height: 20px">
-                                    <form>
-
-                                        <!--First name-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               class="label_input"
-                                               for="first_name_c">First name:</label>
-                                        <input style="margin-top: 5px;" type="text" id="first_name_c"
-                                               name="first_name" :value="member.first_name" disabled>
-
-                                        <!--Last name-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="last_name_c">Last name:</label>
-                                        <input style="margin-top: 5px;" type="text" id="last_name_c"
-                                               name="last_name" :value="member.last_name" disabled>
-
-                                        <!--Birthday-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="birthday_c">Birthday:</label>
-                                        <input style="margin-top: 5px;" type="text" id="birthday_c" name="birthday"
-                                               :value="member.birthday" disabled>
-
-                                        <!--Report Subject-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="report_subject_c">Report subject:</label>
-                                        <input style="margin-top: 5px;" type="text" id="report_subject_c"
-                                               name="report_subject" :value="member.report_subject" disabled>
-
-                                        <!--Country-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="country_c">Country:</label>
-                                        <input style="margin-top: 5px;" type="text" id="country_c"
-                                               name="report_subject" :value="member.country" disabled>
-
-                                        <!--Phone number-->
-                                        <label
-                                            style="color: floralwhite; font-size: 14px; font-weight: 100; margin-bottom: 5px"
-                                            for="phone_c">Phone number:</label><br>
-                                        <input style=" margin-top: 5px;" id="phone_c" type="text"
-                                               name="phone" :value="member.phone" disabled>
-
-                                        <!--Email-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100 "
-                                               for="email_c">Email:</label> <br>
-                                        <input style="margin-top: 5px;" type="email" id="email_c" name="email"
-                                               :value="member.email" disabled>
-
-                                        <!--Company-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="company_c">
-                                            Company:</label>
-                                        <input type="text" id="company_c" name="company" :value="member.company"
-                                               disabled>
-
-                                        <!--Position-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="position_c">
-                                            Position:</label>
-                                        <input style="margin-top: 0" type="text" id="position_c" name="position"
-                                               :value="member.position" disabled>
-
-                                        <!--About me-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="about_me_c">About me:</label>
-                                        <textarea class="form-control" name="about_me"
-                                                  id="about_me_c" rows="4" :value="member.about_me" disabled></textarea>
-
-                                        <!--Photo-->
-                                        <div style="padding-top: 30px">
-                                            <img v-bind:src="'/images/memberImages/' + member.photo"
-                                                 alt=""/>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </b-col>
-                    <b-col>
-                        <h1>New Information:</h1>
-                        <div class="main-w3layouts wrapper">
-                            <div class="main-agileinfo" style="width: 100%;">
+                            <div class="main-agileinfo" style="width: 50%">
                                 <div class="agileits-top" id="agileits-top-first" style="line-height: 20px">
 
                                     <!--Errors displaying-->
@@ -196,6 +115,16 @@
                                                class="form-control form-control-lg"
                                                id="formFileLg"
                                                name="image" type="file" accept=".jpg,.png,.jpeg">
+
+                                        <div style="padding-top: 30px">
+                                            <img style="border-radius: 60px; width: 90%; padding: 20px"
+                                                 v-bind:src="'/images/memberImages/' + member.photo"
+                                                 alt=""/>
+                                            <b-button variant="info" style="position: absolute" @click="deletePhoto">
+                                                Delete
+                                            </b-button>
+                                        </div>
+
                                         <input type="submit" value="Update">
                                     </form>
                                 </div>
@@ -209,7 +138,6 @@
 </template>
 
 <script>
-
 import axios from "axios";
 import Datepicker from 'vuejs-datepicker';
 
@@ -222,7 +150,7 @@ export default {
     data: function () {
         return {
             date: new Date(),
-            disabledDates:  {
+            disabledDates: {
                 from: new Date()
             },
             member: {},
@@ -235,7 +163,6 @@ export default {
     methods: {
         updateData: function (e) {
             e.preventDefault();
-
             //collecting data from form
             let form = document.querySelector('.updateForm')
             let data = new FormData(form);
@@ -248,6 +175,34 @@ export default {
             let date = document.querySelector('.vdp-datepicker').children[0].children[0].value;
             data.append('birthday', date)
 
+            this.updateFunction(data)
+        },
+        getMember: function () {
+            axios.get('/api/members/one/' + this.id)
+                .then((response) => {
+                    this.member = response.data.data[0]
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        },
+        deletePhoto: function (e) {
+            e.preventDefault()
+
+            let data = new FormData();
+            data.append('id', this.member.id)
+            data.append('photo', 'default.png')
+
+            axios.post('/api/members/deletePhoto', data)
+                .then((msg) => {
+                    this.getMember();
+                    alert('Successfully updated')
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
+        },
+        updateFunction: function (data) {
             axios.post('/api/members/updateMember', data)
                 .then((msg) => {
                     this.getMember();
@@ -266,16 +221,8 @@ export default {
                         document.getElementById('agileits-top-first').scrollIntoView();
                     }
                 })
-        },
-        getMember: function () {
-            axios.get('/api/members/one/' + this.id)
-                .then((response) => {
-                    this.member = response.data.data[0]
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
         }
+
     }
 }
 </script>
