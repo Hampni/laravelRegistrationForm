@@ -68,7 +68,7 @@
                             </div>
                         </div>
 
-                        <b-row>
+                        <b-row style="line-height: normal; vertical-align: middle;">
                             <v-admin-panel-entry-data
                                 v-for="(member, index) in paginatedItems"
                                 :key="member.id"

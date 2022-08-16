@@ -29,7 +29,7 @@
                                         </div>
                                     </div>
 
-                                    <form ref="updateForm" class="updateForm" action="" @submit="updateData">
+                                    <form ref="updateForm" class="updateForm" @submit="updateData">
 
                                         <input type="hidden" name="id" :value="member.id">
 
@@ -38,14 +38,14 @@
                                                for="first_name" class="label_input">First name:</label>
                                         <input type="text" id="first_name" name="first_name"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.first_name">
+                                               :value="member.first_name" @change="change">
 
                                         <!--Last name-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="last_name">Last name:</label>
                                         <input type="text" id="last_name" name="last_name"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.last_name">
+                                               :value="member.last_name" @change="change">
 
                                         <!--Birthday-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
@@ -54,6 +54,7 @@
                                                     :value="date"
                                                     format="yyyy-MM-dd"
                                                     :disabled-dates="this.disabledDates"
+                                                    @change="change"
                                         ></datepicker>
 
                                         <!--Report subject-->
@@ -61,42 +62,42 @@
                                                for="report_subject">Report subject:</label>
                                         <input type="text" id="report_subject" name="report_subject"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.report_subject">
+                                               :value="member.report_subject" @change="change">
 
                                         <!--Country-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="country">Country:</label>
                                         <input type="text" id="country" name="country"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.country">
+                                               :value="member.country" @change="change">
 
                                         <!--Phone-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="phone">Phone:</label>
                                         <input type="text" id="phone" name="phone"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.phone">
+                                               :value="member.phone" @change="change">
 
                                         <!--Email-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="email">Email:</label>
                                         <input type="text" id="email" name="email"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.email">
+                                               :value="member.email" @change="change">
 
                                         <!--Company-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="company">Company:</label>
                                         <input type="text" id="company" name="company"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.company">
+                                               :value="member.company" @change="change">
 
                                         <!--Position-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="position">Position:</label>
                                         <input type="text" id="position" name="position"
                                                style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.position">
+                                               :value="member.position" @change="change">
 
                                         <!--About-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
@@ -105,7 +106,7 @@
                                                   name="about_me"
                                                   id="about_me"
                                                   rows="4"
-                                                  :value="member.about_me"></textarea>
+                                                  :value="member.about_me" @change="change"></textarea>
 
                                         <!--Photo-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
@@ -161,15 +162,25 @@ export default {
         this.getMember();
     },
     methods: {
+        change: function (e) {
+            Object.keys(this.member).forEach((key) => {
+                if (key == e.target.id) {
+                    this.member[key] = e.target.value
+                }
+            })
+        },
         updateData: function (e) {
             e.preventDefault();
             //collecting data from form
             let form = document.querySelector('.updateForm')
             let data = new FormData(form);
 
+            console.log(data)
+
             for (let i = 0; i < Object.values(form).length - 1; i++) {
                 Object.values(form)[i].style.border = ''
-                console.log(Object.values(form)[i].style.border)
+                // console.log(Object.values(form)[i].name)
+                // console.log(Object.values(form)[i].value)
             }
 
             let date = document.querySelector('.vdp-datepicker').children[0].children[0].value;

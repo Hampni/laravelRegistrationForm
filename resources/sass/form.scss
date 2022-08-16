@@ -605,6 +605,9 @@ input[type="submit"]:hover {
     transform: translateY(-40%);
     resize: vertical;
 }
+.v-admin-panel-entry-data {
+    height: fit-content;
+}
 
 .entryAdminPanel {
 
