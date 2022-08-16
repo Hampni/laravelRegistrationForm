@@ -131,9 +131,11 @@
                                         <!--Birthday-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
                                                for="birthday">Birthday:</label>
-                                        <input type="text" id="birthday" name="birthday"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               :value="member.birthday">
+                                        <datepicker id="birthday"
+                                                    :value="date"
+                                                    format="yyyy-MM-dd"
+                                                    :disabled-dates="this.disabledDates"
+                                        ></datepicker>
 
                                         <!--Report subject-->
                                         <label style="color: floralwhite; font-size: 14px; font-weight: 100"
@@ -209,24 +211,30 @@
 <script>
 
 import axios from "axios";
+import Datepicker from 'vuejs-datepicker';
 
 export default {
     name: 'v-update',
+    components: {
+        Datepicker
+    },
     props: ['id'],
     data: function () {
         return {
+            date: new Date(),
+            disabledDates:  {
+                from: new Date()
+            },
             member: {},
-            errors: []
+            errors: [],
         }
     },
     mounted() {
         this.getMember();
     },
     methods: {
-
         updateData: function (e) {
             e.preventDefault();
-
 
             //collecting data from form
             let form = document.querySelector('.updateForm')
@@ -237,6 +245,8 @@ export default {
                 console.log(Object.values(form)[i].style.border)
             }
 
+            let date = document.querySelector('.vdp-datepicker').children[0].children[0].value;
+            data.append('birthday', date)
 
             axios.post('/api/members/updateMember', data)
                 .then((msg) => {

@@ -34,9 +34,12 @@
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="birthday_label"
                        for="birthday">Insert
                     full date: YYYY.MM.DD</label>
-                <input class="text email" style="margin-top: 5px;" type="text" id="birthday" name="birthday"
-                       placeholder="Birthday"
-                       required="">
+                <datepicker id="birthday"
+                            :value="date"
+                            format="yyyy-MM-dd"
+                            style="padding-bottom: 20px"
+                            :disabled-dates="this.disabledDates"
+                            ></datepicker>
 
                 <!--Report Subject-->
                 <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="report_subject_label"
@@ -82,20 +85,27 @@ import axios from 'axios';
 import IMask from 'imask';
 import intlTelInput from "intl-tel-input";
 import 'intl-tel-input/build/css/intlTelInput.css';
+import Datepicker from 'vuejs-datepicker';
 
 export default {
     name: "v-form-first-step",
+    components: {
+        Datepicker
+    },
     data: function () {
         return {
+            date: new Date(),
+            disabledDates:  {
+                from: new Date()
+            },
             countries: [],
             errors: []
         }
     },
     mounted() {
-        this.phoneNumber();
-        this.datepicker();
-        this.mask();
         this.getCountries();
+        this.phoneNumber();
+        this.masked();
     },
     methods: {
         phoneNumber: function () {
@@ -112,33 +122,7 @@ export default {
                 }
             )
         },
-        datepicker: function () {
-            $('#birthday').datepicker(
-                {
-                    dateFormat: 'yy-mm-dd',
-                    changeYear: true,
-                    changeMonth: true,
-                    yearRange: '1951:2021',
-                    currentText: 'Now',
-                    maxDate: '-1y'
-                }
-            );
-            const dateMask = IMask(
-                document.getElementById('birthday'),
-                {
-                    mask: Date,
-                    pattern: 'Y{-}`m{-}`d ',
-                    lazy: true,
-                    autofix: true,
-                    blocks: {
-                        d: {mask: IMask.MaskedRange, placeholderChar: 'd', from: 1, to: 31, maxLength: 3},
-                        m: {mask: IMask.MaskedRange, placeholderChar: 'm', from: 1, to: 12, maxLength: 2},
-                        Y: {mask: IMask.MaskedRange, placeholderChar: 'y', from: 1950, to: 2021, maxLength: 4}
-                    }
-                }
-            )
-        },
-        mask: function () {
+        masked: function () {
             const first_name = IMask(
                 document.getElementById('first_name'), {
                     mask: '********************'
@@ -175,12 +159,17 @@ export default {
             let form = document.querySelector('.first-form');
             let data = new FormData(form);
 
+            let date = document.querySelector('.vdp-datepicker').children[0].children[0].value;
+
+            data.append('birthday', date)
+
             for (let i = 0; i < Object.values(form).length - 1; i++) {
                 Object.values(form)[i].style.border = ''
             }
             //sending data
             axios.post('/api/saveFirstStep', data)
                 .then((msg) => {
+                    console.log(msg)
                     this.showSecondStep();
                 })
                 //catching errors and displaying them
@@ -196,6 +185,7 @@ export default {
                     }
                 })
         },
+
     }
 }
 </script>

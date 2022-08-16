@@ -16,6 +16,6 @@ class FirstStepController extends Controller
         $request->updated_at = date_create()->format('Y-m-d H:i:s');
         $id = DB::table('members')->insertGetId($request->all());
         $request->session()->put('id', $id);
-        return 'success';
+        return $_POST;
     }
 }

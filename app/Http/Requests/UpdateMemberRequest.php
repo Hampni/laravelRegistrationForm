@@ -26,7 +26,7 @@ class UpdateMemberRequest extends FormRequest
         return [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'birthday' => 'required|date|max:10',
+            'birthday' => 'required|date',
             'report_subject' => 'required|max:500|regex:/^[\pL\s\0-9\-]+$/u',
             'country' => 'required',
             'phone' => 'required',

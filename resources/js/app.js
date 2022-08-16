@@ -15,6 +15,7 @@ import VueSession from "vue-session";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
@@ -46,6 +47,7 @@ Vue.component('add-page', require('./components/v-add.vue').default)
 const app = new Vue({
     el: '#app',
 });
+
 
 
 

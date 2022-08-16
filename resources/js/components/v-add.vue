@@ -49,9 +49,11 @@
                             <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="birthday_label"
                                    for="birthday">Insert
                                 full date: YYYY.MM.DD</label>
-                            <input style="margin-top: 5px;" type="text" id="birthday" name="birthday"
-                                   placeholder="Birthday"
-                                   required="">
+                            <datepicker id="birthday"
+                                        :value="date"
+                                        format="yyyy-MM-dd"
+                                        :disabled-dates="this.disabledDates"
+                            ></datepicker>
 
                             <!--Report Subject-->
                             <label style="color: floralwhite; font-size: 14px; font-weight: 100"
@@ -128,12 +130,19 @@ import axios from 'axios';
 import IMask from 'imask';
 import intlTelInput from "intl-tel-input";
 import 'intl-tel-input/build/css/intlTelInput.css';
+import Datepicker from 'vuejs-datepicker';
 
 export default {
     name: 'v-add',
-
+    components: {
+        Datepicker
+    },
     data: function () {
         return {
+            date: new Date(),
+            disabledDates: {
+                from: new Date()
+            },
             countries: [],
             errors: []
         }
@@ -141,7 +150,6 @@ export default {
 
     mounted() {
         this.phoneNumber();
-        this.datepicker();
         this.mask();
         this.getCountries();
 
@@ -155,6 +163,11 @@ export default {
 
             let form = this.$refs.formAddNew;
             let data = new FormData(form);
+
+            let date = document.querySelector('.vdp-datepicker').children[0].children[0].value;
+
+            data.append('birthday', date)
+
 
             for (let i = 0; i < Object.values(form).length - 1; i++) {
                 Object.values(form)[i].style.border = ''
@@ -180,7 +193,6 @@ export default {
 
 
         },
-
         phoneNumber: function () {
             $('#phone').mask(
                 ' (999) 999-999?9', {
@@ -193,32 +205,6 @@ export default {
             $('#phone').on(
                 'change', function () {
                     $('#phone')[0].value = '+' + iti.getSelectedCountryData().dialCode + $('#phone')[0].value
-                }
-            )
-        },
-        datepicker: function () {
-            $('#birthday').datepicker(
-                {
-                    dateFormat: 'yy-mm-dd',
-                    changeYear: true,
-                    changeMonth: true,
-                    yearRange: '1951:2021',
-                    currentText: 'Now',
-                    maxDate: '-1y'
-                }
-            );
-            const dateMask = IMask(
-                document.getElementById('birthday'),
-                {
-                    mask: Date,
-                    pattern: 'Y{-}`m{-}`d ',
-                    lazy: true,
-                    autofix: true,
-                    blocks: {
-                        d: {mask: IMask.MaskedRange, placeholderChar: 'd', from: 1, to: 31, maxLength: 3},
-                        m: {mask: IMask.MaskedRange, placeholderChar: 'm', from: 1, to: 12, maxLength: 2},
-                        Y: {mask: IMask.MaskedRange, placeholderChar: 'y', from: 1950, to: 2021, maxLength: 4}
-                    }
                 }
             )
         },
