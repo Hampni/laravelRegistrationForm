@@ -26,21 +26,20 @@
                         <span class="dataBlock">
                                         <div>
                                             <b-button-group>
-                                                <b-button-group vertical>
-                                                <b-button style="border-bottom: 3px solid black; border-top-right-radius: 0" variant="info"
+                                                <b-button-group vertical style="padding: 5px;">
+                                                    <b-button style="border-radius: 5px; margin: 5px" variant="info"
                                                           @click="showAllData(member_entry_data.id)">Show all data</b-button>
-                                                <b-button style="border-bottom-right-radius: 0" :variant="isShown ? '' : 'light'"
+                                                    <b-button style="border-radius: 5px; margin: 5px" :variant="isShown ? '' : 'light'"
                                                           @click="changeDisplay">{{
                                                         isShown ? 'hide' : 'show'
                                                     }}</b-button>
                                                 </b-button-group>
 
-                                                <b-button-group vertical>
-                                                <b-button style="border-bottom: 2px solid black; border-top-left-radius: 0;" variant="info" @click="deleteMember(member_entry_data.id)">Delete</b-button>
-                                                <a style="text-decoration: none;"
+                                                <b-button-group vertical style="padding: 5px;">
+                                                <b-button style="border-radius: 5px ;margin: 5px" variant="info" @click="deleteMember(member_entry_data.id)">Delete</b-button>
+                                                    <a style="text-decoration: none; margin: 5px"
                                                    :href="'/update/'+ member_entry_data.id">
                                                   <b-button
-                                                      style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0"
                                                       variant="info">Update</b-button>
                                                 </a>
                                                 </b-button-group>
