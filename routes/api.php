@@ -33,7 +33,7 @@ Route::post('members/deleteMember', 'Api\MemberController@deleteMember');
 
 Route::get('countries', 'Api\CountryController@index');
 
-Route::post('saveFirstStep', 'Api\FirstStepController@index');
-Route::post('saveSecondStep', 'Api\SecondStepController@index');
+Route::post('saveFirstStep', 'Api\StepController@firstStep');
+Route::post('saveSecondStep', 'Api\StepController@secondStep');
 
 

@@ -5,8 +5,7 @@
             <!--Errors displaying-->
             <div id="errors" v-if="errors">
                 <div v-for="(v,k) in errors" :key="k"
-                     class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"
-                     style="border: 1px solid red">
+                     class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
                     <p v-for="error in v" :key="error" class="text-sm">
                         {{ error }}
                     </p>
@@ -16,42 +15,42 @@
             <form id="first-form" class="first-form" @submit="toSecondStep">
 
                 <!--First name-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" class="label_input"
+                <label class="label_input"
                        id="first_name_label"
                        for="first_name">Example: Jhon</label>
-                <input class="text email" style="margin-top: 5px;" type="text" id="first_name" name="first_name"
+                <input class="text email" type="text" id="first_name" name="first_name"
                        placeholder="First name"
                        required="">
 
                 <!--Last name-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="last_name_label"
+                <label class="label_input" id="last_name_label"
                        for="last_name">Example: Dorian</label>
-                <input class="text email" style="margin-top: 5px;" type="text" id="last_name" name="last_name"
+                <input class="text email" type="text" id="last_name" name="last_name"
                        placeholder="Last name"
                        required="">
 
                 <!--Birthday-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="birthday_label"
+                <label class="label_input" id="birthday_label"
                        for="birthday">Select date:</label>
                 <datepicker id="birthday"
                             :value="date"
                             format="yyyy-MM-dd"
-                            style="padding-bottom: 20px"
+                            class="datepickerVue"
                             :disabled-dates="this.disabledDates"
-                            ></datepicker>
+                ></datepicker>
 
                 <!--Report Subject-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="report_subject_label"
+                <label class="label_input" id="report_subject_label"
                        for="report_subject">Example: Computer Science</label>
-                <input class="text email" style="margin-top: 5px;" type="text" id="report_subject"
+                <input class="text email" type="text" id="report_subject"
                        name="report_subject"
                        placeholder="Report subject" required="">
 
                 <!--Country-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="country_label"
+                <label class="label_input" id="country_label"
                        for="country">Choose
                     your country:</label>
-                <select class="browser-default custom-select" style="margin-top: 5px; margin-bottom: 25px;"
+                <select class="browser-default custom-select"
                         id="country"
                         name="country" required="required">
                     <option value="" selected>Country</option>
@@ -59,17 +58,17 @@
                 </select>
 
                 <!--Phone number-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100; margin-bottom: 5px"
+                <label class="phone_number_input"
                        id="phone_label" for="phone">Example: +380 (xxx)
                     xxx-xxx</label><br>
-                <input class="text email" style="margin-top: 5px; display: block; width: 100%" id="phone" type="text"
+                <input class="text email" style="display: block; width: 100%" id="phone" type="text"
                        name="phone"
                        placeholder="Phone" required="">
                 <br>
                 <!--Email-->
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100 " id="email_label"
+                <label class="label_input" id="email_label"
                        for="email">Example: YourEmail@mail.com</label> <br>
-                <input class="text email" style="margin-top: 5px;" type="email" id="email" name="email"
+                <input class="text email" type="email" id="email" name="email"
                        placeholder="Email" required="">
 
                 <input id="submit" type="submit" value="Next">
@@ -94,7 +93,7 @@ export default {
     data: function () {
         return {
             date: new Date(),
-            disabledDates:  {
+            disabledDates: {
                 from: new Date()
             },
             countries: [],

@@ -4,12 +4,12 @@
 
             <!--Share buttons-->
             <!--Facebook-->
-            <div style="padding:25px">
+            <div class="divPrime">
                 <div>
                     <a target="_blank"
                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fprodanets.trainee.albedo.dev%2F&amp;src=sdkpreparse"
                        class="fb-xfbml-parse-ignore">
-                        <button style="width: 100%; margin-bottom: 10px; " class="btn btn-success">Facebook
+                        <button class="btn btn-success" style="width: 100%; margin-bottom: 10px;">Facebook
                         </button>
                     </a>
                 </div>
@@ -21,7 +21,7 @@
                        data-text="Check out this Meetup with SoCal AngularJS! "
                        data-url="http://localhost:8002/"
                        data-show-count="false">
-                        <button style="width: 100%; margin-bottom: 10px" class="btn btn-info">Twitter</button>
+                        <button class="btn btn-info btnTS">Twitter</button>
                     </a>
                 </div>
             </div>
@@ -63,8 +63,3 @@ export default {
     }
 }
 </script>
-
-
-<style scoped>
-
-</style>

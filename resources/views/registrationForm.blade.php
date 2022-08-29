@@ -20,13 +20,13 @@ gQmx2ZCwgTG9zIEFuZ2VsZXMsIENBIDkwMDI4LCDQodCo0JA!5e0!3m2!1sru!2slt!4v16582193303
     @auth
 
         <div>
-            <div style="display: inline-block">
+            <div class="divRF">
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <button class="btn btn-info">{{ __('Logout') }}</button>
                 </a>
             </div>
-            <div style="display: inline-block">
+            <div class="divRF">
                 <a href="/adminPanel">
                     <button class="btn btn-info">{{ __('Admin Panel') }}</button>
                 </a>

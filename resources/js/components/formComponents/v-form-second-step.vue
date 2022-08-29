@@ -5,8 +5,7 @@
             <!--Errors displaying-->
             <div id="errors" v-if="errors">
                 <div v-for="(v,k) in errors" :key="k"
-                     class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"
-                     style="border: 1px solid red">
+                     class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
                     <p v-for="error in v" :key="error" class="text-sm">
                         {{ error }}
                     </p>
@@ -16,28 +15,32 @@
             <!--second step-->
             <form class="second-form" id="second-form" enctype="multipart/form-data" @submit="toThirdStep">
 
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="company_label"
+                <!--Company-->
+                <label class="label_input" id="company_label"
                        for="company">Your
                     company:</label>
                 <input class="text" type="text" id="company" name="company" placeholder="Company">
                 <br>
 
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="position_label"
+                <!--Position-->
+                <label class="label_input" id="position_label"
                        for="position">Your
                     position:</label>
-                <input class="text email" style="margin-top: 0" type="text" id="position" name="position"
+                <input class="text email" type="text" id="position" name="position"
                        placeholder="Position">
 
-                <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="about_me_label"
+                <!--About me-->
+                <label class="label_input" id="about_me_label"
                        for="about_me">Tell
                     us something about yourself:</label>
                 <textarea class="form-control" name="about_me" placeholder="About me"
                           id="about_me" rows="4"></textarea>
-                <label style="padding-top: 10px; color: white" for="formFileLg"
-                       class="form-label">Photo:</label>
-                <input style="background: white; color: black" class="form-control form-control-lg"
+
+                <!--Photo-->
+                <label class="photoLable" for="formFileLg">Photo:</label>
+                <input class="form-control form-control-lg"
                        id="formFileLg"
-                       name="image" type="file" accept=".jpg,.png,.jpeg">
+                       name="photo" type="file" accept=".jpg,.png,.jpeg">
                 <input type="submit" value="Next">
             </form>
         </div>
@@ -96,7 +99,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -18,8 +18,7 @@
                         <!--errors-->
                         <div id="errors" v-if="errors">
                             <div v-for="(v,k) in errors" :key="k"
-                                 class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"
-                                 style="border: 1px solid red">
+                                 class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
                                 <p v-for="error in v" :key="error" class="text-sm">
                                     {{ error }}
                                 </p>
@@ -29,41 +28,42 @@
                         <form ref="formAddNew" action="" class="form" @submit="addNewMember">
 
                             <!--First name-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" class="label_input"
+                            <label class="label_input"
                                    id="first_name_label"
                                    for="first_name">Example: Jhon</label>
-                            <input style="margin-top: 5px;" type="text" id="first_name"
+                            <input class="text email" type="text" id="first_name"
                                    name="first_name"
                                    placeholder="First name"
                                    required="">
 
                             <!--Last name-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="last_name_label"
+                            <label class="label_input" id="last_name_label"
                                    for="last_name">Example: Dorian</label>
-                            <input style="margin-top: 5px;" type="text" id="last_name"
+                            <input class="text email" type="text" id="last_name"
                                    name="last_name"
                                    placeholder="Last name"
                                    required="">
 
                             <!--Birthday-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="birthday_label"
+                            <label class="label_input" id="birthday_label"
                                    for="birthday">Select date:</label>
                             <datepicker id="birthday"
                                         :value="date"
                                         format="yyyy-MM-dd"
+                                        class="datepickerVue"
                                         :disabled-dates="this.disabledDates"
                             ></datepicker>
 
                             <!--Report Subject-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                            <label class="label_input"
                                    id="report_subject_label"
                                    for="report_subject">Example: Computer Science</label>
-                            <input style="margin-top: 5px;" type="text" id="report_subject"
+                            <input class="text email" type="text" id="report_subject"
                                    name="report_subject"
                                    placeholder="Report subject" required="">
 
                             <!--Country-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="country_label"
+                            <label class="label_input" id="country_label"
                                    for="country">Choose
                                 country:</label>
                             <select class="browser-default custom-select"
@@ -83,37 +83,35 @@
                             <br>
 
                             <!--Email-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100 " id="email_label"
+                            <label class="label_input" id="email_label"
                                    for="email">Example: NewEmail@mail.com</label> <br>
-                            <input style="margin-top: 5px;" type="email" id="email" name="email"
+                            <input class="text email" type="email" id="email" name="email"
                                    placeholder="Email" required="">
 
                             <!--Company-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="company_label"
+                            <label class="label_input" id="company_label"
                                    for="company">
                                 Company:</label>
-                            <input type="text" id="company" name="company" placeholder="Company">
+                            <input class="text email" type="text" id="company" name="company" placeholder="Company">
 
                             <!--Position-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="position_label"
+                            <label class="label_input" id="position_label"
                                    for="position">
                                 Position:</label>
-                            <input style="margin-top: 0" type="text" id="position" name="position"
+                            <input class="text email" type="text" id="position" name="position"
                                    placeholder="Position">
 
                             <!--About me-->
-                            <label style="color: floralwhite; font-size: 14px; font-weight: 100" id="about_me_label"
+                            <label class="label_input" id="about_me_label"
                                    for="about_me">Additional information:</label>
                             <textarea class="form-control" name="about_me" placeholder="About me"
                                       id="about_me" rows="4"></textarea>
 
                             <!--Photo-->
-                            <label style="padding-top: 10px; color: white" for="formFileLg"
-                                   class="form-label">Photo:</label>
-                            <input style="background: white; color: black"
-                                   class="form-control form-control-lg"
-                                   id="formFileLg"
-                                   name="image" type="file" accept=".jpg,.png,.jpeg">
+                            <label class="photoLable" for="formFileLg">Photo:</label>
+                            <input class="form-control form-control-lg"
+                                id="formFileLg"
+                                name="image" type="file" accept=".jpg,.png,.jpeg">
 
                             <input type="submit" value="Add new member">
                         </form>

@@ -10942,6 +10942,15 @@ blockquote:before, blockquote:after, q:before, q:after {
   border-color: #76b852;
 }
 
+.btnTS {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.divPrime {
+  padding: 25px;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -11061,13 +11070,42 @@ a.linkPagination {
   padding: 3em;
 }
 
+.text-sm {
+  margin: 0;
+}
+
 .agileits-top-third {
-  display: none;
   padding: 3em;
 }
 
 .agileits-top-thir {
   padding: 3em;
+}
+
+.datepickerVue {
+  margin-top: 5px;
+  padding-bottom: 20px;
+}
+
+.divRF {
+  display: inline-block;
+}
+
+.label_input {
+  color: floralwhite;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.phone_number_input {
+  color: floralwhite;
+  font-size: 14px;
+  font-weight: 100;
+  margin-bottom: 5px;
+}
+
+.bg-red-500 {
+  border: 1px solid red;
 }
 
 .browser-default {
@@ -11079,6 +11117,8 @@ a.linkPagination {
   font-weight: 100;
   font-size: 0.9em;
   border-radius: 0;
+  margin-top: 5px;
+  margin-bottom: 25px;
 }
 
 input[type=text], input[type=email], input[type=password] {
@@ -11101,6 +11141,7 @@ input[type=text], input[type=email], input[type=password] {
 
 input.email, input.text.w3lpass {
   margin: 2em 0;
+  margin-top: 5px;
 }
 
 .text:focus, .text:valid {
@@ -11269,9 +11310,40 @@ input[type=submit]:hover {
   z-index: -1;
 }
 
-.form-control {
-  background: none;
+.photoLable {
+  padding-top: 10px;
   color: white;
+}
+
+.form-control {
+  background: white;
+  color: black;
+}
+
+.divDataContent {
+  padding: 20px;
+  text-align: left;
+  line-height: 30px;
+}
+
+.divImageAP {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.imageAllData {
+  width: 200px;
+}
+
+.b-buttonClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.b-row {
+  line-height: normal;
+  vertical-align: middle;
 }
 
 .colorlib-bubbles li {
@@ -11357,6 +11429,14 @@ input[type=submit]:hover {
   bottom: 40px;
 }
 
+.text-center {
+  max-width: 1800px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: none;
+}
+
 .container {
   padding-left: 100px;
   color: white;
@@ -11367,10 +11447,132 @@ input[type=submit]:hover {
   padding-top: 20px;
 }
 
+.container-admin-panel {
+  color: black;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  vertical-align: top;
+}
+
+.email {
+  margin-top: 5px;
+}
+
+.listAdmin {
+  width: 100%;
+  display: inline-block;
+  text-align: left;
+  border-bottom: black 1px solid;
+}
+
+.listItemAdmin {
+  padding-left: 10px;
+  width: 100%;
+  display: inline-block;
+}
+
+.listItemAdminBase {
+  padding-left: 10px;
+  width: 100%;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.bv-example-row-update {
+  color: black;
+  line-height: 60px;
+  border: none;
+  font-size: 20px;
+}
+
+.bv-example-row {
+  color: black;
+  border: none;
+  padding: 0;
+  line-height: 15px;
+}
+
+.dataBlock {
+  display: inline-block;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  max-height: 100px;
+  width: 100%;
+  line-height: 28px;
+}
+
+.col-sm {
+  line-height: 25px;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+.pageLink {
+  color: whitesmoke;
+  font-size: 25px;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.members {
+  max-width: 1800px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.membersCol {
+  max-width: 150px;
+}
+
+.membersReport {
+  word-wrap: break-word;
+  max-width: 600px;
+  line-height: 30px;
+}
+
+.membersName {
+  max-width: 400px;
+  word-wrap: break-word;
+  line-height: 30px;
+}
+
 .member-image {
   width: 100px;
   height: 100px;
   border-radius: 30px;
+}
+
+.allData {
+  float: left;
+  vertical-align: middle;
+  border-radius: 30px;
+  background-color: white;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: solid 2px black;
+}
+
+.main-agileinfo-width {
+  width: 100%;
+}
+
+.agileits-top-line {
+  line-height: 20px;
+}
+
+.allDataConvert {
+  padding: 20px;
+  position: fixed;
+  top: 10%;
+  z-index: 95;
 }
 
 .reportSubj {
@@ -11381,6 +11583,24 @@ input[type=submit]:hover {
   padding: 20px;
   transform: translateY(-40%);
   resize: vertical;
+}
+
+.v-admin-panel-entry-data {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.entryAdminPanel {
+  font-size: 14px;
+  position: relative;
+  top: 42%;
+  left: 5px;
+  right: 0px;
+  transform: translateY(-40%);
+  resize: vertical;
+  word-wrap: break-word;
+  line-height: 30px;
 }
 
 .colorlib-bubbles li:nth-child(6) {
@@ -11516,7 +11736,7 @@ input[type=submit]:hover {
     padding: 2.2em;
   }
   input.email, input.text.w3lpass {
-    margin: 1.5em 0;
+    margin-top: 5px;
   }
   input[type=submit] {
     margin: 2em 0;

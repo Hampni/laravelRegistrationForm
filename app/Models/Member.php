@@ -10,9 +10,20 @@ class Member extends Model
 {
     use HasFactory;
 
-    public static function insertNewMember(array $dataArray)
-    {
-        DB::table('members')->insert($dataArray);
-    }
+    protected $table = 'members';
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'birthday',
+        'report_subject',
+        'country',
+        'phone',
+        'email',
+        'company',
+        'position',
+        'about_me',
+        'photo'
+    ];
 
 }

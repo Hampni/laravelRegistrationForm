@@ -1,11 +1,13 @@
 <template>
     <div class="v-admin-panel">
         <div class="main-w3layouts wrapper">
-            <div class="main-agileinfo" style="width: 100%;">
-                <div class="container text-center" style="max-width: 1800px; height: fit-content; border: none">
+            <div class="main-agileinfo main-agileinfo-width">
+                <div class="container text-center">
                     <div class="container-admin-panel text-center">
                         <!--table sheets-->
-                        <tr class="listAdmin" style="border-bottom: black 1px solid">
+                        <pagination align="center" size="large" :data="members"
+                                    @pagination-change-page="getResults"></pagination>
+                        <tr class="listAdmin">
                             <td class="listItemAdminBase">
                                 <div class="row" style="padding: 20px">
                                     <div class="col-sm" style="max-width: 100px">
@@ -38,11 +40,10 @@
                                 </div>
                             </td>
                         </tr>
-
                         <!--all info about member-->
                         <div class="allDataConvert">
                             <div ref="allData" class="allData">
-                                <div style="padding: 20px; text-align: left; line-height: 30px">
+                                <div class="divDataContent">
                                     <div><b>Id:</b> {{ memberAllData.id }}</div>
                                     <div><b>First name:</b> {{ memberAllData.first_name }}</div>
                                     <div><b> Last name:</b> {{ memberAllData.last_name }}</div>
@@ -55,38 +56,28 @@
                                     <div><b> Position:</b> {{ memberAllData.position }}</div>
                                     <div><b> About me:</b> {{ memberAllData.about_me }}</div>
                                 </div>
-                                <div style="padding-top: 30px; text-align: center">
-                                    <img style="width: 200px;"
+                                <div class="divImageAP">
+                                    <img class="imageAllData"
                                          v-bind:src="'/images/memberImages/'  + memberAllData.photo"
                                          alt=""/>
                                 </div>
                                 <div>
-                                    <b-button style="position: absolute; top: 10px; right: 10px" variant="dark"
+                                    <b-button class="b-buttonClose"
+                                              variant="dark"
                                               @click="closeAllInfo">X
                                     </b-button>
                                 </div>
                             </div>
                         </div>
 
-                        <b-row style="line-height: normal; vertical-align: middle;">
+                        <b-row class="b-row">
                             <v-admin-panel-entry-data
-                                v-for="(member, index) in paginatedItems"
+                                v-for="(member, index) in members.data"
                                 :key="member.id"
                                 :member_entry_data="member"
                                 :memberId="member.id"
                                 @delete="deleteMember"
                                 @showAllData="showAllData"
-                            />
-                        </b-row>
-                        <b-row>
-                            <b-pagination
-                                @change="onPageChanged"
-                                :total-rows="totalRows"
-                                :per-page="perPage"
-                                v-model="currentPage"
-                                class="my-2"
-                                align="center"
-                                size="lg"
                             />
                         </b-row>
                     </div>
@@ -107,7 +98,7 @@ export default {
     data: function () {
         return {
             memberAllData: [],
-            members: [],
+            members: {},
             items: [],
             paginatedItems: [],
             currentPage: 1,
@@ -119,7 +110,7 @@ export default {
     },
     mounted() {
         this.$refs.allData.style.display = 'none'
-        this.loadMembers();
+        this.getResults();
     },
     methods: {
         paginate(page_size, page_number) {
@@ -133,7 +124,7 @@ export default {
             this.paginate(this.perPage, page - 1);
         },
         showAllData: function (memberId) {
-            this.members.forEach(e => {
+            this.members.data.forEach(e => {
                 if (e.id == memberId.id) {
                     this.memberAllData = e
                     this.$refs.allData.style.display = ''
@@ -148,9 +139,9 @@ export default {
             data['id'] = memberId['id'];
             axios.post('/api/members/deleteMember', data)
                 .then((response) => {
-                    this.paginatedItems.forEach((e, index) => {
+                    this.members.data.forEach((e, index) => {
                         if (e.id == memberId['id']) {
-                            this.paginatedItems.splice(index, 1)
+                            this.members.data.splice(index, 1)
                         }
                     })
                 })
@@ -158,19 +149,12 @@ export default {
                     console.log(error)
                 })
         },
-        loadMembers: function () {
-            axios.get('/api/members/all?page=1')
-                .then((response) => {
-                    this.members = response.data.data
-                    this.totalRows = this.members.length;
-                    this.items = this.members;
-                    this.paginatedItems = this.members;
-                    this.paginate(this.perPage, 0);
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
+        getResults(page = 1) {
+            axios.get('/api/members/all?page=' + page)
+                .then(response => {
+                    this.members = response.data;
+                });
+        },
     }
 
 }

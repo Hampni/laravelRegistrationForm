@@ -4,4 +4,5 @@
 <div id="app">
     <members-page></members-page>
 </div>
+
 @endsection

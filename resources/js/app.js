@@ -27,15 +27,15 @@ Vue.use(IconsPlugin)
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('pagination', require('laravel-vue-pagination'))
 Vue.use(VueSession);
 Vue.component('form-page', require('./components/v-form.vue').default)
 Vue.component('members-page', require('./components/v-members.vue').default)
 Vue.component('admin-page', require('./components/v-admin-panel.vue').default)
 Vue.component('update-page', require('./components/v-update.vue').default)
 Vue.component('add-page', require('./components/v-add.vue').default)
+
 
 
 /**

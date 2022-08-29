@@ -16,13 +16,12 @@
                         <h1>Update Information:</h1>
                         <div class="main-w3layouts wrapper">
                             <div class="main-agileinfo" style="width: 50%">
-                                <div class="agileits-top" id="agileits-top-first" style="line-height: 20px">
+                                <div class="agileits-top agileits-top-line" id="agileits-top-first">
 
                                     <!--Errors displaying-->
                                     <div id="errors" v-if="errors">
                                         <div v-for="(v,k) in errors" :key="k"
-                                             class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0"
-                                             style="border: 1px solid red">
+                                             class="bg-red-500 text-white rounded font-bold mb-4 shadow-lg py-2 px-4 pr-0">
                                             <p v-for="error in v" :key="error" class="text-sm">
                                                 {{ error }}
                                             </p>
@@ -34,21 +33,21 @@
                                         <input type="hidden" name="id" :value="member.id">
 
                                         <!--First name-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="first_name" class="label_input">First name:</label>
+                                        <label class="label_input"
+                                               for="first_name">First name:</label>
                                         <input type="text" id="first_name" name="first_name"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.first_name" @change="change">
 
                                         <!--Last name-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="last_name">Last name:</label>
                                         <input type="text" id="last_name" name="last_name"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.last_name" @change="change">
 
                                         <!--Birthday-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="birthday">Birthday:</label>
                                         <datepicker id="birthday"
                                                     :value="date"
@@ -58,49 +57,49 @@
                                         ></datepicker>
 
                                         <!--Report subject-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="report_subject">Report subject:</label>
                                         <input type="text" id="report_subject" name="report_subject"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.report_subject" @change="change">
 
                                         <!--Country-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="country">Country:</label>
                                         <input type="text" id="country" name="country"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.country" @change="change">
 
                                         <!--Phone-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="phone">Phone:</label>
                                         <input type="text" id="phone" name="phone"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.phone" @change="change">
 
                                         <!--Email-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="email">Email:</label>
                                         <input type="text" id="email" name="email"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.email" @change="change">
 
                                         <!--Company-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="company">Company:</label>
                                         <input type="text" id="company" name="company"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.company" @change="change">
 
                                         <!--Position-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="position">Position:</label>
                                         <input type="text" id="position" name="position"
-                                               style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                               class="label_input"
                                                :value="member.position" @change="change">
 
                                         <!--About-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
+                                        <label class="label_input"
                                                for="about_me">About me:</label>
                                         <textarea class="form-control"
                                                   name="about_me"
@@ -109,9 +108,8 @@
                                                   :value="member.about_me" @change="change"></textarea>
 
                                         <!--Photo-->
-                                        <label style="color: floralwhite; font-size: 14px; font-weight: 100"
-                                               for="formFileLg"
-                                               class="form-label">Photo:</label>
+                                        <label class="label_input"
+                                               for="formFileLg">Photo:</label>
                                         <input style="background: white; color: black"
                                                class="form-control form-control-lg"
                                                id="formFileLg"

@@ -15,17 +15,17 @@ class MemberController extends Controller
 
     public function getShownMembers()
     {
-        return MemberResource::collection(Member::where('is_shown', 1)->orderBy('id', 'desc')->get());
+        return MemberResource::collection(Member::latest()->where('is_shown', 1)->paginate(10));
     }
 
     public function getAllMembers()
     {
-        return MemberResource::collection(Member::orderBy('id', 'desc')->get());
+        return MemberResource::collection(Member::latest()->paginate(10));
     }
 
     public function getOneMember($id)
     {
-        return MemberResource::collection(Member::all()->where('id', $id));
+        return MemberResource::collection(Member::where('id', $id)->get());
     }
 
     public function countMembers()
@@ -41,36 +41,35 @@ class MemberController extends Controller
 
     public function addMember(AddNewMemberRequest $request)
     {
+        $file_name = 'default.png';
         if (!empty($request->file('image'))) {
             $file = $request->file('image');
             $file_name = $file->getClientOriginalName();
             $file->move(public_path('images/memberImages'), $file_name);
-            $_POST['photo'] = $file_name;
         }
+        $r = $request->all();
+        $r['photo'] = $file_name;
+        Member::create($r);
 
-        $_POST['created_at'] = date_create()->format('Y-m-d H:i:s');
-        DB::table('members')->insert($_POST);
-        return $file_name;
     }
 
     public function updateMember(UpdateMemberRequest $request)
     {
-
+        $file_name = 'default.png';
         if (!empty($request->file('image'))) {
             $file = $request->file('image');
             $file_name = $file->getClientOriginalName();
             $file->move(public_path('images/memberImages'), $file_name);
-            $_POST['photo'] = $file_name;
         }
 
-        $_POST['updated_at'] = date_create()->format('Y-m-d H:i:s');
-
-        DB::table('members')->where('id', $_POST['id'])->update($_POST);
+        $r = $request->all();
+        $r['photo'] = $file_name;
+        Member::whereId($r['id'])->update($r);
     }
 
     public function deletePhoto(Request $request)
     {
-        DB::table('members')->where('id', $request->id)->update($request->all());
+        Member::whereId($request->id)->update($request->all());
     }
 
     public function deleteMember(Request $request)

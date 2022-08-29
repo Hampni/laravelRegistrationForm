@@ -1,17 +1,17 @@
 <template>
     <div class="v-member-data">
-        <div class="container text-center" style="max-width: 1800px; height: fit-content">
+        <div class="container text-center members">
             <div class="row">
-                <div class="col" style="max-width: 150px">
+                <div class="col membersCol">
                     <div style="padding-top: 30px">
                         <img class="member-image" v-bind:src="'/images/memberImages/' + member_data.photo"
                              alt=""/>
                     </div>
                 </div>
-                <div class="col" style="max-width: 400px; word-wrap: break-word; line-height: 30px;">
+                <div class="col membersName">
                     <div class="reportSubj">{{ member_data.first_name }} &nbsp {{ member_data.last_name }}</div>
                 </div>
-                <div class="col" style=" word-wrap: break-word; max-width: 600px; line-height: 30px;">
+                <div class="col membersReport">
                     <div class="reportSubj"> {{ member_data.report_subject }}</div>
                 </div>
                 <div class="col">
