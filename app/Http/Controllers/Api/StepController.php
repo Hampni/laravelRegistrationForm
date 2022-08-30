@@ -16,7 +16,6 @@ class StepController extends Controller
     {
         $member = Member::create($request->all());
         $request->session()->put('id', $member->id);
-        return $member->id;
     }
 
     public function secondStep(SecondStepRequest $request)

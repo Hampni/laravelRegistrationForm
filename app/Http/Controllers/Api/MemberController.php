@@ -64,6 +64,7 @@ class MemberController extends Controller
 
         $r = $request->all();
         $r['photo'] = $file_name;
+        unset($r['image']);
         Member::whereId($r['id'])->update($r);
     }
 
