@@ -18,18 +18,18 @@ class StepTest extends TestCase
     protected $faker;
 
     protected $firstStepMember;
-    
+
     protected $secondStepMember;
 
     protected $firstStepRequest;
 
-    
+
     public function setUp(): void
     {
         parent::setUp();
-        
+
         $this->stepController = $this->app->make('App\Http\Controllers\Api\StepController');
-   
+
         $this->faker = Faker::create();
 
         $this->firstStepMember = [
@@ -80,12 +80,71 @@ class StepTest extends TestCase
 
         //send request to api with data from second step
         $this->stepController->secondStep($secondStepRequest);
-    
+
         //assert if it was updated
         $this->assertDatabaseHas('members', [
             'first_name' => $this->firstStepMember['first_name'],
             'position' => $this->secondStepMember['position'],
         ]);
+    }
 
+    public function test_first_step_validation_is_working()
+    {
+        $url = route('first_step');
+
+        //send request to api with data from first step
+        $response = $this->call('POST', $url, $this->firstStepMember);
+
+        //assert validation not detected violation
+        $response->assertSessionDoesntHaveErrors([
+            'first_name',
+            'last_name',
+            'birthday',
+            'report_subject',
+            'country',
+            'phone',
+            'email'
+        ]);
+
+        //now sending wrong data
+        $wrongData = $this->firstStepMember;
+        $wrongData['first_name'] = '///:::{}{}{}'; //prohibited symbols
+
+        //send request to api with invalid data from first step
+        $response = $this->call('POST', $url, $wrongData);
+
+        //assert validation detected violation
+        $response->assertSessionHasErrors([
+            'first_name'
+        ]);
+    }
+
+    public function test_second_step_validation_is_working()
+    {
+        $url = route('second_step');
+
+        //send request to api with data from second step
+        $response = $this->call('POST', $url, $this->secondStepMember);
+
+        //assert validation not detected violation
+        $response->assertSessionDoesntHaveErrors([
+            'email',
+            'company',
+            'position',
+            'about_me',
+            'photo'
+        ]);
+
+        //now sending wrong data
+        $wrongData = $this->secondStepMember;
+        $wrongData['company'] = '///:::{}{}{}'; //prohibited symbols
+
+        //send request to api with invalid data from second step
+        $response = $this->call('POST', $url, $wrongData);
+
+        //assert validation detected violation
+        $response->assertSessionHasErrors([
+            'company'
+        ]);
     }
 }
