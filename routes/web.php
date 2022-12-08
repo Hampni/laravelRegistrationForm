@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', 'RegistrationFormController@index');
-    Route::get('/members', 'MembersController@index');
-    Route::get('/adminPanel', 'AdminPanelController@index')->middleware('auth');
-    Route::get('/update/{id}', 'AdminPanelController@update')->middleware('auth');
-    Route::get('/addMember', 'AdminPanelController@add')->middleware('auth');
+    Route::get('/', 'RegistrationFormController@index')->name('homepage');
+    Route::get('/members', 'MembersController@index')->name('members');
+    Route::get('/adminPanel', 'AdminPanelController@index')->middleware('auth')->name('admin_panel');
+    Route::get('/update/{id}', 'AdminPanelController@update')->middleware('auth')->name('update_member');
+    Route::get('/addMember', 'AdminPanelController@add')->middleware('auth')->name('add_member');
     Auth::routes();
 });

@@ -30,7 +30,5 @@ class StepController extends Controller
         $r = $request->all();
         $r['photo'] = $file_name;
         Member::whereId(session()->get('id'))->update($r);
-
     }
-
 }
