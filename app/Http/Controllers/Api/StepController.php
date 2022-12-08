@@ -15,7 +15,7 @@ class StepController extends Controller
     public function firstStep(FirstStepRequest $request)
     {
         $member = Member::create($request->all());
-        $request->session()->put('id', $member->id);
+        session()->put('id', $member->id);
     }
 
     public function secondStep(SecondStepRequest $request)
@@ -29,7 +29,7 @@ class StepController extends Controller
 
         $r = $request->all();
         $r['photo'] = $file_name;
-        Member::whereId($request->session()->get('id'))->update($r);
+        Member::whereId(session()->get('id'))->update($r);
 
     }
 
