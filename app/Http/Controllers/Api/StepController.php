@@ -8,6 +8,8 @@ use App\Http\Requests\SecondStepRequest;
 use App\Models\Member;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\HelloMail;
 
 
 class StepController extends Controller
@@ -16,6 +18,7 @@ class StepController extends Controller
     {
         $member = Member::create($request->all());
         session()->put('id', $member->id);
+        Mail::to($member->email)->send(new HelloMail($member->first_name));
     }
 
     public function secondStep(SecondStepRequest $request)

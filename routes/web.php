@@ -26,6 +26,8 @@ Route::group(['middleware' => ['web']], function () {
     Auth::routes();
 });
 
+Route::get('/mail', 'MailController@sendMail')->name('mail');
+
 Route::get('/event', function () {
     event(new MessageNotification('This is our first broadcast message!'));
     event(new NewsInformation('Something interesting...'));
