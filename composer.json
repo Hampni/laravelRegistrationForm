@@ -12,7 +12,8 @@
         "hampni/backupdb": "^1.0",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "*"
+        "laravel/ui": "*",
+        "pusher/pusher-php-server": "^7.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

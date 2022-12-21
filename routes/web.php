@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\MessageNotification;
+use App\Events\NewsInformation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +24,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/update/{id}', 'AdminPanelController@update')->middleware('auth')->name('update_member');
     Route::get('/addMember', 'AdminPanelController@add')->middleware('auth')->name('add_member');
     Auth::routes();
+});
+
+Route::get('/event', function () {
+    event(new MessageNotification('This is our first broadcast message!'));
+    event(new NewsInformation('Something interesting...'));
+});
+
+Route::get('/listen', function () {
+    return view('listen');
 });

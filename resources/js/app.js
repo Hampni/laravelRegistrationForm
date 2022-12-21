@@ -14,6 +14,7 @@ import VueSession from "vue-session";
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Echo from 'laravel-echo';
 
 
 Vue.use(BootstrapVue)
@@ -46,6 +47,16 @@ Vue.component('add-page', require('./components/v-add.vue').default)
 
 const app = new Vue({
     el: '#app',
+    created() {
+        window.Echo.channel('notification')
+                   .listen('MessageNotification', (e) => {
+                       console.log('Well, this showed up without a refresh!');
+                   })
+        window.Echo.channel('news-information')
+                   .listen('NewsInformation', (e) => {
+                       console.log('News information arrived about something interesting!');
+                   })
+    }
 });
 
 
