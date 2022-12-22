@@ -26,11 +26,9 @@ Route::group(['middleware' => ['web']], function () {
     Auth::routes();
 });
 
-Route::get('/mail', 'MailController@sendMail')->name('mail');
 
-Route::get('/event', function () {
+Route::post('/event', function () {
     event(new MessageNotification('This is our first broadcast message!'));
-    event(new NewsInformation('Something interesting...'));
 });
 
 Route::get('/listen', function () {

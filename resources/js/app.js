@@ -52,10 +52,6 @@ const app = new Vue({
                    .listen('MessageNotification', (e) => {
                        console.log('Well, this showed up without a refresh!');
                    })
-        window.Echo.channel('news-information')
-                   .listen('NewsInformation', (e) => {
-                       console.log('News information arrived about something interesting!');
-                   })
     }
 });
 
